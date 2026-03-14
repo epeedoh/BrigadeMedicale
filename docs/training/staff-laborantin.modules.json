@@ -1,0 +1,110 @@
+[
+  {
+    "id": "laborantin-001-procedures",
+    "role": "LABORANTIN",
+    "title": "Procédures de Prélèvement d'Échantillons",
+    "description": "Techniques correctes de prélèvement sanguin et d'autres échantillons biologiques.",
+    "shortDescription": "Prélèvement et manipulation d'échantillons",
+    "durationMinutes": 45,
+    "level": "Intermédiaire",
+    "tags": ["prélèvement", "échantillons", "technique"],
+    "imageUrl": null,
+    "createdAt": "2024-01-15T10:00:00Z",
+    "updatedAt": "2024-01-15T10:00:00Z",
+    "steps": [
+      {
+        "id": "laborantin-001-step-1",
+        "title": "Préparation et sécurité",
+        "content": "Avant tout prélèvement:\n\n1. Équipement de protection personnelle\n2. Désinfection des mains et du site\n3. Identification correcte du patient\n4. Vérification des instructions\n5. Fournitures appropriées prêtes\n\nLa sécurité vient en premier.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "laborantin-001-step-2",
+        "title": "Technique de prélèvement sanguin",
+        "content": "Étapes du prélèvement sanguin:\n\n1. Appliquer le garrot\n2. Identifier la bonne veine\n3. Insérer l'aiguille à 15-30 degrés\n4. Laisser le sang s'écouler\n5. Remplir les tubes dans le bon ordre\n6. Retirer l'aiguille et appliquer une pression\n7. Étiqueter immédiatement\n\nLa technique correcte évite les contaminants.",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "laborantin-001-step-3",
+        "title": "Gestion des échantillons",
+        "content": "Après le prélèvement:\n\n- Maintenir l'intégrité de l'échantillon\n- Étiquetage précis\n- Stockage correct (température, temps)\n- Transport sécurisé\n- Documentation des anomalies\n- Gestion des rejets\n\nLes échantillons mal gérés donnent des résultats incorrects.",
+        "order": 3,
+        "media": []
+      }
+    ]
+  },
+  {
+    "id": "laborantin-002-tests",
+    "role": "LABORANTIN",
+    "title": "Analyses de Laboratoire Courantes",
+    "description": "Compréhension des tests de laboratoire courants et interprétation des résultats.",
+    "shortDescription": "Tests et analyses de laboratoire",
+    "durationMinutes": 50,
+    "level": "Intermédiaire",
+    "tags": ["tests", "analyses", "résultats"],
+    "imageUrl": null,
+    "createdAt": "2024-01-20T10:00:00Z",
+    "updatedAt": "2024-01-20T10:00:00Z",
+    "steps": [
+      {
+        "id": "laborantin-002-step-1",
+        "title": "Tests sanguins courants",
+        "content": "Tests sanguins fréquemment demandés:\n\n1. Formule sanguine complète (FBC)\n2. Profil biochimique\n3. Fonction hépatique\n4. Fonction rénale\n5. Profil lipidique\n6. Glucose à jeun\n\nChaque test a un but diagnostique spécifique.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "laborantin-002-step-2",
+        "title": "Qualité et contrôle des résultats",
+        "content": "Assurer la qualité:\n\n- Calibration des équipements\n- Contrôle de qualité interne\n- Contrôle de qualité externe\n- Reconnaissance des anomalies\n- Retest si nécessaire\n- Documentation des contrôles\n\nLa qualité assure la fiabilité des résultats.",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "laborantin-002-step-3",
+        "title": "Communication des résultats",
+        "content": "Rapportage des résultats:\n\n- Résultats précis et clairs\n- Références appropriées\n- Drapeaux pour anormaux\n- Signature/initiales de l'analyste\n- Enregistrement complet\n- Suivi des résultats critiques\n\nUne bonne communication protège le patient.",
+        "order": 3,
+        "media": []
+      }
+    ]
+  },
+  {
+    "id": "laborantin-003-safety",
+    "role": "LABORANTIN",
+    "title": "Sécurité Biologique et Biosécurité",
+    "description": "Prévention des risques biologiques et biosécurité au laboratoire.",
+    "shortDescription": "Biosécurité et protection",
+    "durationMinutes": 40,
+    "level": "Avancé",
+    "tags": ["biosécurité", "sécurité", "biohazard"],
+    "imageUrl": null,
+    "createdAt": "2024-01-25T10:00:00Z",
+    "updatedAt": "2024-01-25T10:00:00Z",
+    "steps": [
+      {
+        "id": "laborantin-003-step-1",
+        "title": "Niveaux de biosécurité",
+        "content": "Niveaux de sécurité biologique:\n\nNiveau 1 - Faible risque\nNiveau 2 - Risque modéré\nNiveau 3 - Risque sérieux\nNiveau 4 - Risque très sérieux\n\nNotre laboratoire opère au niveau 2.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "laborantin-003-step-2",
+        "title": "Équipement de protection",
+        "content": "EPI obligatoire:\n\n1. Blouse de laboratoire\n2. Gants appropriés\n3. Protection oculaire\n4. Masque si nécessaire\n5. Chaussures fermées\n6. Cheveux attachés\n\nPortez l'EPI en permanence au labo.",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "laborantin-003-step-3",
+        "title": "Gestion des déchets biologiques",
+        "content": "Élimination sûre des déchets:\n\n- Aiguilles dans des conteneurs spécialisés\n- Liquides biologiques traités\n- Déchets infectieux séparés\n- Autoclavage avant l'élimination\n- Suivi et documentation\n- Pas de déchets dans les poubelles ordinaires\n\nLa mauvaise élimination des déchets pose des risques.",
+        "order": 3,
+        "media": []
+      }
+    ]
+  }
+]
