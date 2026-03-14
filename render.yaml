@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: brigade-medicale-api
+    env: dotnet
+    plan: free
+    buildCommand: cd src/BrigadeMedicale.API && dotnet publish -c Release -o /etc/render/out
+    startCommand: cd /etc/render/out && dotnet BrigadeMedicale.API.dll
+    branch: main
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: UseSqlite
+        value: "false"
+      - key: RENDER
+        value: "true"
+    autoDeploy: true
