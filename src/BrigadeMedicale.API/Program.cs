@@ -139,10 +139,18 @@ app.UseAuthorization();
 app.MapControllers();
 
 // Apply migrations automatically
-using (var scope = app.Services.CreateScope())
+try
 {
-    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    await context.Database.MigrateAsync();
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        await context.Database.MigrateAsync();
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Migration failed (non-blocking): {ex.Message}");
+    // Don't crash if migration fails - app can still run
 }
 
 app.Run();
