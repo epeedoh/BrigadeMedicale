@@ -1,0 +1,139 @@
+<div class="flex h-screen w-full overflow-hidden font-sans bg-[#f8fafc]">
+
+  <div class="hidden lg:flex lg:w-[30%] relative flex-col items-center justify-center p-12 border-r border-white/10 shadow-2xl z-20"
+       style="background: linear-gradient(135deg, #0d9488 0%, #1e40af 100%);">
+
+    <div class="absolute inset-0 opacity-10">
+      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="medical-cross-pattern" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+            <path d="M25 15v20M15 25h20" stroke="white" stroke-width="2" fill="none"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#medical-cross-pattern)"/>
+      </svg>
+    </div>
+
+    <div class="relative z-10 flex flex-col items-center text-center w-full">
+      <div class="w-28 h-28 bg-white/20 backdrop-blur-md rounded-3xl flex items-center justify-center mb-8 shadow-xl border border-white/20">
+        <svg class="w-14 h-14 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+        </svg>
+      </div>
+
+      <h1 class="text-5xl font-black text-white tracking-tighter mb-2">BRIGADE</h1>
+      <p class="text-2xl text-white/90 font-light uppercase tracking-[0.4em] mb-6">Médicale</p>
+      <p class="text-sm text-white/60 max-w-xs leading-relaxed mb-16 italic">Système de gestion médical intégré de nouvelle génération</p>
+
+      <div class="relative w-64 h-64 flex items-center justify-center">
+        <div class="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center border border-white/20 backdrop-blur-sm shadow-lg">
+           <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+        </div>
+
+        <div class="absolute -top-4 w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white/80 shadow-md">❤️</div>
+        <div class="absolute top-10 right-0 w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white/80 shadow-md">👤</div>
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white/80 shadow-md">🧪</div>
+        <div class="absolute bottom-10 right-0 w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white/80 shadow-md">📦</div>
+        <div class="absolute -bottom-4 w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white/80 shadow-md">🕒</div>
+        <div class="absolute bottom-10 left-0 w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white/80 shadow-md">📄</div>
+        <div class="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white/80 shadow-md">💊</div>
+        <div class="absolute top-10 left-0 w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white/80 shadow-md">🏠</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full lg:w-[70%] flex items-center justify-center p-8 sm:p-16">
+    <div class="w-full max-w-[800px] flex flex-col gap-10">
+
+      <div class="text-center lg:text-left space-y-3">
+        <h2 class="text-6xl font-black text-slate-900 tracking-tight">Espace Connexion</h2>
+        <p class="text-2xl text-slate-500">Identifiez-vous pour accéder à vos outils.</p>
+      </div>
+
+      <div class="bg-white p-16 rounded-[50px] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] border border-slate-100">
+        <!-- Message d'erreur -->
+        @if (errorMessage) {
+          <div class="mb-8 p-6 bg-red-50 border-2 border-red-200 rounded-2xl">
+            <p class="text-red-700 text-xl font-semibold flex items-center gap-3">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+              </svg>
+              {{ errorMessage }}
+            </p>
+          </div>
+        }
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-10">
+          <div class="space-y-4">
+            <label for="username" class="text-2xl font-bold text-slate-800 ml-2 block uppercase tracking-wide">Identifiant</label>
+            <input type="text"
+                   id="username"
+                   formControlName="username"
+                   class="w-full px-10 py-8 bg-slate-50 border-2 rounded-3xl text-3xl font-medium outline-none transition-all"
+                   [class.border-slate-100]="!username?.touched || !username?.invalid"
+                   [class.focus:bg-white]="true"
+                   [class.focus:border-teal-500]="!username?.invalid"
+                   [class.focus:ring-8]="true"
+                   [class.focus:ring-teal-500/10]="!username?.invalid"
+                   [class.border-red-400]="username?.touched && username?.invalid"
+                   [class.focus:border-red-500]="username?.touched && username?.invalid"
+                   [class.focus:ring-red-500/10]="username?.touched && username?.invalid"
+                   placeholder="Entrez votre identifiant">
+            @if (username?.touched && username?.errors?.['required']) {
+              <p class="text-red-500 text-lg ml-4 mt-2">L'identifiant est requis</p>
+            }
+          </div>
+
+          <div class="space-y-4">
+            <label for="password" class="text-2xl font-bold text-slate-800 ml-2 block uppercase tracking-wide">Mot de passe</label>
+            <input type="password"
+                   id="password"
+                   formControlName="password"
+                   class="w-full px-10 py-8 bg-slate-50 border-2 rounded-3xl text-3xl font-medium outline-none transition-all"
+                   [class.border-slate-100]="!password?.touched || !password?.invalid"
+                   [class.focus:bg-white]="true"
+                   [class.focus:border-teal-500]="!password?.invalid"
+                   [class.focus:ring-8]="true"
+                   [class.focus:ring-teal-500/10]="!password?.invalid"
+                   [class.border-red-400]="password?.touched && password?.invalid"
+                   [class.focus:border-red-500]="password?.touched && password?.invalid"
+                   [class.focus:ring-red-500/10]="password?.touched && password?.invalid"
+                   placeholder="Entrez votre mot de passe">
+            @if (password?.touched && password?.errors?.['required']) {
+              <p class="text-red-500 text-lg ml-4 mt-2">Le mot de passe est requis</p>
+            }
+            @if (password?.touched && password?.errors?.['minlength']) {
+              <p class="text-red-500 text-lg ml-4 mt-2">Le mot de passe doit contenir au moins 6 caractères</p>
+            }
+          </div>
+
+          <button type="submit"
+                  [disabled]="loading"
+                  class="w-full py-9 mt-4 rounded-3xl text-4xl font-black text-white shadow-2xl transition-all flex items-center justify-center gap-6 disabled:opacity-70 disabled:cursor-not-allowed"
+                  [class.hover:brightness-110]="!loading"
+                  [class.active:scale-[0.98]]="!loading"
+                  style="background: linear-gradient(135deg, #0d9488 0%, #1e40af 100%);">
+            @if (loading) {
+              <svg class="animate-spin w-10 h-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <span>CONNEXION EN COURS...</span>
+            } @else {
+              SE CONNECTER
+              <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            }
+          </button>
+        </form>
+      </div>
+
+      <div class="flex items-center justify-between px-10 text-slate-400">
+        <span class="text-xl font-bold italic tracking-tighter">BRIGADE MÉDICALE V1.0</span>
+        <div class="flex items-center gap-3 bg-teal-50 px-6 py-3 rounded-2xl border border-teal-100">
+           <svg class="w-6 h-6 text-teal-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+           <span class="text-sm font-black uppercase text-teal-800">SSL Sécurisé</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

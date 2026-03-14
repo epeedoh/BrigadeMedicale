@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BrigadeMedicale.Patient.Mobile.Features.Triage.Pages.TriageDashboardPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Triage Patient"
+    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1a1a1a}"
+    Padding="0">
+
+    <Grid RowDefinitions="Auto, *, Auto" Padding="0">
+        <!-- Header -->
+        <VerticalStackLayout
+            Grid.Row="0"
+            BackgroundColor="#008B8B"
+            Padding="16"
+            Spacing="8">
+            <Label
+                FontAttributes="Bold"
+                FontSize="24"
+                Text="Tableau de Bord"
+                TextColor="White" />
+            <Label
+                FontSize="14"
+                Text="Prise en charge des triages du jour"
+                TextColor="#E0F7F7" />
+        </VerticalStackLayout>
+
+        <!-- Content -->
+        <Grid Grid.Row="1" RowDefinitions="Auto, *" Padding="16">
+            <!-- Stats Cards -->
+            <VerticalStackLayout Grid.Row="0" Spacing="12">
+                <Grid ColumnDefinitions="*, *, *" ColumnSpacing="12">
+                    <!-- Total Card -->
+                    <Frame
+                        Padding="12"
+                        BorderColor="Transparent"
+                        CornerRadius="8"
+                        HasShadow="True">
+                        <VerticalStackLayout HorizontalOptions="Center" Spacing="4">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="20"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding TotalCount}"
+                                TextColor="#667eea" />
+                            <Label
+                                FontSize="11"
+                                HorizontalTextAlignment="Center"
+                                Text="Triages"
+                                TextColor="#666" />
+                        </VerticalStackLayout>
+                        <Frame.Background>
+                            <LinearGradientBrush Angle="135">
+                                <GradientStop Color="#667eea" Offset="0" />
+                                <GradientStop Color="#764ba2" Offset="1" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+                    </Frame>
+
+                    <!-- Completed Card -->
+                    <Frame
+                        Grid.Column="1"
+                        Padding="12"
+                        BorderColor="Transparent"
+                        CornerRadius="8"
+                        HasShadow="True">
+                        <VerticalStackLayout HorizontalOptions="Center" Spacing="4">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="20"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding CompletedCount}"
+                                TextColor="White" />
+                            <Label
+                                FontSize="11"
+                                HorizontalTextAlignment="Center"
+                                Text="Complétés"
+                                TextColor="White" />
+                        </VerticalStackLayout>
+                        <Frame.Background>
+                            <LinearGradientBrush Angle="135">
+                                <GradientStop Color="#11998e" Offset="0" />
+                                <GradientStop Color="#38ef7d" Offset="1" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+                    </Frame>
+
+                    <!-- Pending Card -->
+                    <Frame
+                        Grid.Column="2"
+                        Padding="12"
+                        BorderColor="Transparent"
+                        CornerRadius="8"
+                        HasShadow="True">
+                        <VerticalStackLayout HorizontalOptions="Center" Spacing="4">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="20"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding PendingCount}"
+                                TextColor="White" />
+                            <Label
+                                FontSize="11"
+                                HorizontalTextAlignment="Center"
+                                Text="En attente"
+                                TextColor="White" />
+                        </VerticalStackLayout>
+                        <Frame.Background>
+                            <LinearGradientBrush Angle="135">
+                                <GradientStop Color="#f093fb" Offset="0" />
+                                <GradientStop Color="#f5576c" Offset="1" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+                    </Frame>
+                </Grid>
+            </VerticalStackLayout>
+
+            <!-- List -->
+            <RefreshView
+                Grid.Row="1"
+                Command="{Binding RefreshCommand}"
+                IsRefreshing="{Binding IsRefreshing}">
+                <VerticalStackLayout Spacing="12">
+                    <!-- Loading State -->
+                    <VerticalStackLayout
+                        Grid.Row="1"
+                        IsVisible="{Binding IsLoading}"
+                        Padding="20"
+                        Spacing="12"
+                        HorizontalOptions="Center"
+                        VerticalOptions="CenterAndExpand">
+                        <ActivityIndicator
+                            Color="#008B8B"
+                            IsRunning="True"
+                            Scale="1.5" />
+                        <Label
+                            FontSize="14"
+                            Text="Chargement des triages..."
+                            TextColor="#666"
+                            HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+
+                    <!-- Empty State -->
+                    <VerticalStackLayout
+                        Grid.Row="1"
+                        IsVisible="{Binding IsEmpty}"
+                        Padding="20"
+                        Spacing="16"
+                        VerticalOptions="CenterAndExpand">
+                        <Label
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            Text="Aucun triage du jour"
+                            TextColor="#333"
+                            HorizontalTextAlignment="Center" />
+                        <Label
+                            FontSize="14"
+                            Text="Tous les patients ont déjà été triés!"
+                            TextColor="#666"
+                            HorizontalTextAlignment="Center" />
+                        <Button
+                            BackgroundColor="#008B8B"
+                            Command="{Binding NewTriageCommand}"
+                            CornerRadius="6"
+                            Text="➕ Nouveau triage"
+                            TextColor="White"
+                            Padding="16,12" />
+                    </VerticalStackLayout>
+
+                    <!-- Triage List -->
+                    <CollectionView
+                        Grid.Row="1"
+                        IsVisible="{Binding HasTriages}"
+                        ItemsSource="{Binding Triages}"
+                        SelectionMode="Single"
+                        SelectedItemChangedCommand="{Binding SelectTriageCommand}"
+                        SelectedItemChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                    Padding="12"
+                                    BorderColor="#e0e0e0"
+                                    CornerRadius="8"
+                                    HasShadow="False"
+                                    Margin="0,4">
+                                    <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="70, *" ColumnSpacing="12">
+                                        <!-- Urgency Badge -->
+                                        <VerticalStackLayout
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Grid.RowSpan="3"
+                                            Padding="8"
+                                            BackgroundColor="{Binding ., Converter={StaticResource UrgencyLevelColorConverter}}"
+                                            CornerRadius="8"
+                                            VerticalOptions="Center">
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="11"
+                                                Text="{Binding ., Converter={StaticResource UrgencyLevelLabelConverter}}"
+                                                TextColor="White"
+                                                HorizontalTextAlignment="Center" />
+                                        </VerticalStackLayout>
+
+                                        <!-- Patient Name & Status -->
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            ColumnDefinitions="*, Auto">
+                                            <Label
+                                                Grid.Column="0"
+                                                FontAttributes="Bold"
+                                                FontSize="14"
+                                                Text="{Binding PatientName}"
+                                                TextColor="#333" />
+                                            <Label
+                                                Grid.Column="1"
+                                                FontSize="11"
+                                                Text="{Binding ., Converter={StaticResource StatusBadgeConverter}}"
+                                                TextColor="{Binding ., Converter={StaticResource StatusColorConverter}}" />
+                                        </Grid>
+
+                                        <!-- Complaint -->
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontSize="12"
+                                            Text="{Binding Complaint}"
+                                            TextColor="#666" />
+
+                                        <!-- Vital Signs -->
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            FontSize="11"
+                                            Text="{Binding ., Converter={StaticResource VitalSignsConverter}}"
+                                            TextColor="#999" />
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </RefreshView>
+        </Grid>
+
+        <!-- Footer -->
+        <Grid
+            Grid.Row="2"
+            ColumnDefinitions="*, *"
+            ColumnSpacing="8"
+            Padding="16">
+            <Button
+                BackgroundColor="#e0e0e0"
+                Command="{Binding RefreshCommand}"
+                CornerRadius="6"
+                Text="🔄 Actualiser"
+                TextColor="#333" />
+            <Button
+                Grid.Column="1"
+                BackgroundColor="#008B8B"
+                Command="{Binding NewTriageCommand}"
+                CornerRadius="6"
+                Text="➕ Nouveau"
+                TextColor="White" />
+        </Grid>
+    </Grid>
+</ContentPage>

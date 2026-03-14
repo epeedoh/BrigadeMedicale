@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="BrigadeMedicale.Patient.Mobile.Core.Popups.ConfirmRegistrationPopup"
+    CanBeDismissedByTappingOutsideOfPopup="False">
+
+    <!-- Semi-transparent overlay background -->
+    <Grid BackgroundColor="#00000080" Padding="20">
+        <Border
+            StrokeShape="RoundRectangle 12,12,12,12"
+            BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+            Stroke="{AppThemeBinding Light={StaticResource InputBorderLight}, Dark={StaticResource InputBorderDark}}"
+            StrokeThickness="1"
+            Padding="24"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+
+            <VerticalStackLayout Spacing="16">
+                <!-- Title -->
+                <Label
+                    Text="Confirmez vos informations"
+                    TextColor="{StaticResource Primary}"
+                    FontSize="18"
+                    FontFamily="OpenSansSemibold"
+                    HorizontalTextAlignment="Center" />
+
+                <!-- Divider -->
+                <BoxView
+                    HeightRequest="1"
+                    Color="{AppThemeBinding Light={StaticResource DividerLight}, Dark={StaticResource DividerDark}}"
+                    HorizontalOptions="Fill" />
+
+                <!-- Patient Info (3-column grid) -->
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12" RowSpacing="8">
+                    <!-- Name -->
+                    <VerticalStackLayout Grid.Column="0" Spacing="4">
+                        <Label
+                            Text="Nom"
+                            TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}"
+                            FontSize="12"
+                            FontFamily="OpenSansRegular" />
+                        <Label
+                            x:Name="NameLabel"
+                            Text="-"
+                            TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                            FontSize="14"
+                            FontFamily="OpenSansSemibold" />
+                    </VerticalStackLayout>
+
+                    <!-- Phone -->
+                    <VerticalStackLayout Grid.Column="1" Spacing="4">
+                        <Label
+                            Text="Téléphone"
+                            TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}"
+                            FontSize="12"
+                            FontFamily="OpenSansRegular" />
+                        <Label
+                            x:Name="PhoneLabel"
+                            Text="-"
+                            TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                            FontSize="14"
+                            FontFamily="OpenSansSemibold" />
+                    </VerticalStackLayout>
+
+                    <!-- Sector -->
+                    <VerticalStackLayout Grid.Column="2" Spacing="4">
+                        <Label
+                            Text="Secteur"
+                            TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}"
+                            FontSize="12"
+                            FontFamily="OpenSansRegular" />
+                        <Label
+                            x:Name="SectorLabel"
+                            Text="-"
+                            TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                            FontSize="14"
+                            FontFamily="OpenSansSemibold" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <!-- Divider -->
+                <BoxView
+                    HeightRequest="1"
+                    Color="{AppThemeBinding Light={StaticResource DividerLight}, Dark={StaticResource DividerDark}}"
+                    HorizontalOptions="Fill" />
+
+                <!-- Buttons (2-column grid with equal width) -->
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                    <Button
+                        x:Name="CancelButton"
+                        Grid.Column="0"
+                        Text="Annuler"
+                        Style="{StaticResource SecondaryButton}"
+                        Clicked="OnCancelClicked" />
+
+                    <Button
+                        x:Name="ConfirmButton"
+                        Grid.Column="1"
+                        Text="Confirmer"
+                        Style="{StaticResource PrimaryButton}"
+                        Clicked="OnConfirmClicked" />
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</toolkit:Popup>

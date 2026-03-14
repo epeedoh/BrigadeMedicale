@@ -1,0 +1,153 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">Gestion des Utilisateurs</h1>
+    <p class="text-gray-600">Gérez les comptes du personnel médical</p>
+  </div>
+
+  <!-- Search and Actions -->
+  <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div class="flex-1">
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          (keyup.enter)="onSearch()"
+          placeholder="Rechercher par nom, email, username..."
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
+      </div>
+      <div class="flex gap-2">
+        <button
+          (click)="onSearch()"
+          class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition"
+        >
+          Rechercher
+        </button>
+        <button
+          (click)="createUser()"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+        >
+          + Nouvel utilisateur
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Users Table -->
+  <div class="bg-white rounded-lg shadow-md overflow-hidden">
+    <div *ngIf="loading" class="p-8 text-center">
+      <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      <p class="mt-2 text-gray-600">Chargement...</p>
+    </div>
+
+    <div *ngIf="!loading && users.length === 0" class="p-8 text-center text-gray-500">
+      Aucun utilisateur trouvé
+    </div>
+
+    <table *ngIf="!loading && users.length > 0" class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Utilisateur
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Email
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Rôles
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Statut
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Dernière connexion
+          </th>
+          <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <tr *ngFor="let user of users" class="hover:bg-gray-50">
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center">
+              <div class="flex-shrink-0 h-10 w-10">
+                <div class="h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-semibold">
+                  {{ user.firstName.charAt(0) }}{{ user.lastName.charAt(0) }}
+                </div>
+              </div>
+              <div class="ml-4">
+                <div class="text-sm font-medium text-gray-900">
+                  {{ user.firstName }} {{ user.lastName }}
+                </div>
+                <div class="text-sm text-gray-500">
+                  @{{ user.username }}
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ user.email }}</div>
+            <div *ngIf="user.phoneNumber" class="text-sm text-gray-500">{{ user.phoneNumber }}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+              {{ getRoleName(user) }}
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span [class]="getStatusClass(user)" class="text-sm font-medium">
+              {{ getStatusText(user) }}
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            {{ user.lastLoginAt ? (user.lastLoginAt | date:'short') : 'Jamais' }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+            <button
+              (click)="editUser(user)"
+              class="text-blue-600 hover:text-blue-900 mr-3"
+            >
+              Modifier
+            </button>
+            <button
+              (click)="deleteUser(user)"
+              [disabled]="!user.isActive"
+              class="text-red-600 hover:text-red-900 disabled:text-gray-400 disabled:cursor-not-allowed"
+            >
+              Désactiver
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div *ngIf="!loading && users.length > 0" class="mt-6 flex items-center justify-between">
+    <div class="text-sm text-gray-700">
+      Affichage de <span class="font-medium">{{ (currentPage - 1) * pageSize + 1 }}</span>
+      à <span class="font-medium">{{ Math.min(currentPage * pageSize, totalItems) }}</span>
+      sur <span class="font-medium">{{ totalItems }}</span> résultats
+    </div>
+    <div class="flex gap-2">
+      <button
+        (click)="onPageChange(currentPage - 1)"
+        [disabled]="!hasPreviousPage"
+        class="px-4 py-2 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+      >
+        Précédent
+      </button>
+      <div class="flex items-center px-4">
+        Page {{ currentPage }} sur {{ totalPages }}
+      </div>
+      <button
+        (click)="onPageChange(currentPage + 1)"
+        [disabled]="!hasNextPage"
+        class="px-4 py-2 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+      >
+        Suivant
+      </button>
+    </div>
+  </div>
+</div>

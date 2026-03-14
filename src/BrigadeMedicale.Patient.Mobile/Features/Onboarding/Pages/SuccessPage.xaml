@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BrigadeMedicale.Patient.Mobile.Features.Onboarding.Pages.SuccessPage"
+             Title="Inscription Réussie"
+             BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="*,Auto" Padding="0" Margin="0">
+        <!-- Contenu principal -->
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout
+                Padding="24,40,24,24"
+                Spacing="28"
+                VerticalOptions="Center">
+
+                <!-- Icône de succès -->
+                <VerticalStackLayout
+                    Spacing="12"
+                    HorizontalOptions="Center">
+                    <Frame
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        CornerRadius="50"
+                        BackgroundColor="{StaticResource Success}"
+                        BorderColor="Transparent"
+                        Padding="0"
+                        HasShadow="True"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
+                        <Label
+                            Text="✓"
+                            FontSize="56"
+                            TextColor="White"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                    </Frame>
+
+                    <Label
+                        Text="Inscription réussie !"
+                        FontSize="24"
+                        FontFamily="OpenSansSemibold"
+                        TextColor="{StaticResource Success}"
+                        HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+
+                <!-- Messages de confirmation -->
+                <VerticalStackLayout Spacing="12">
+                    <Label
+                        Text="Félicitations"
+                        FontSize="18"
+                        FontFamily="OpenSansSemibold"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                        HorizontalTextAlignment="Center" />
+
+                    <Label
+                        Text="Votre compte a été créé avec succès. Voici vos informations d'identification que vous pouvez utiliser pour vous connecter."
+                        FontSize="14"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"
+                        HorizontalTextAlignment="Center"
+                        LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
+
+                <!-- Numéro patient -->
+                <VerticalStackLayout Spacing="12">
+                    <Label
+                        Text="Votre numéro de patient"
+                        FontSize="13"
+                        FontFamily="OpenSansSemibold"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+
+                    <Frame
+                        CornerRadius="8"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray950}}"
+                        BorderColor="{StaticResource Primary}"
+                        Padding="16"
+                        HasShadow="False">
+                        <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                            <Label
+                                Text="{Binding PatientNumber}"
+                                FontSize="20"
+                                FontFamily="OpenSansSemibold"
+                                TextColor="{StaticResource Primary}"
+                                HorizontalTextAlignment="Center" />
+
+                            <Label
+                                Text="Notez ce numéro pour la connexion ultérieure"
+                                FontSize="11"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"
+                                HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </VerticalStackLayout>
+
+                <!-- Code QR -->
+                <VerticalStackLayout Spacing="12">
+                    <Label
+                        Text="Code QR d'identification"
+                        FontSize="13"
+                        FontFamily="OpenSansSemibold"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+
+                    <!-- Conteneur QR Code -->
+                    <Frame
+                        CornerRadius="8"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray950}}"
+                        BorderColor="{StaticResource Primary}"
+                        Padding="12"
+                        HasShadow="False"
+                        HorizontalOptions="Center">
+                        <VerticalStackLayout
+                            Spacing="8"
+                            HorizontalOptions="Center">
+
+                            <!-- Image QR Code -->
+                            <Image
+                                Source="{Binding QrCode}"
+                                WidthRequest="200"
+                                HeightRequest="200"
+                                Aspect="AspectFit"
+                                IsVisible="{Binding QrCode, Converter={StaticResource StringNullOrEmptyBoolConverter}}" />
+
+                            <!-- Indicateur de chargement QR -->
+                            <ActivityIndicator
+                                IsRunning="{Binding IsLoading}"
+                                IsVisible="{Binding IsLoading}"
+                                Color="{StaticResource Primary}"
+                                WidthRequest="40"
+                                HeightRequest="40" />
+
+                            <Label
+                                Text="Présentez ce code QR lors de vos consultations"
+                                FontSize="11"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"
+                                HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </VerticalStackLayout>
+
+                <!-- Informations importantes -->
+                <Frame
+                    CornerRadius="8"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryVeryLight}, Dark={StaticResource Gray950}}"
+                    BorderColor="{StaticResource Primary}"
+                    Padding="12"
+                    HasShadow="False">
+                    <VerticalStackLayout Spacing="8">
+                        <Label
+                            Text="Conseils importants"
+                            FontSize="13"
+                            FontFamily="OpenSansSemibold"
+                            TextColor="{StaticResource Primary}" />
+
+                        <VerticalStackLayout Spacing="4">
+                            <Label
+                                Text="• Conservez votre numéro de patient en sécurité"
+                                FontSize="12"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
+
+                            <Label
+                                Text="• Sauvegardez votre code QR pour un accès rapide"
+                                FontSize="12"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
+
+                            <Label
+                                Text="• Ne partagez pas vos informations d'identification"
+                                FontSize="12"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Boutons d'action en bas -->
+        <VerticalStackLayout
+            Grid.Row="1"
+            Padding="24,16,24,24"
+            Spacing="12">
+
+            <!-- Accéder au carnet -->
+            <Button
+                Text="Accéder à mon carnet de santé"
+                Style="{StaticResource PrimaryButton}"
+                Command="{Binding AccessHealthRecordCommand}"
+                FontSize="16"
+                FontFamily="OpenSansSemibold" />
+
+            <!-- Partager QR -->
+            <Button
+                Text="Partager mon code QR"
+                Style="{StaticResource SecondaryButton}"
+                Command="{Binding ShareQrCommand}"
+                FontSize="16"
+                FontFamily="OpenSansSemibold" />
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,597 @@
+[
+  {
+    "id": "module-1-onboarding",
+    "role": "PATIENT",
+    "title": "Créer mon dossier avant ma première visite",
+    "shortDescription": "Préparez vos informations et documents",
+    "description": "Apprenez comment bien préparer votre dossier médical et les informations importantes à avoir lors de votre visite à la Brigade Médicale.",
+    "durationMinutes": 8,
+    "level": "Débutant",
+    "tags": ["onboarding", "dossier", "préparation"],
+    "imageUrl": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop",
+    "createdAt": "2024-01-15T10:00:00Z",
+    "updatedAt": "2024-01-15T10:00:00Z",
+    "steps": [
+      {
+        "id": "step-1-1",
+        "title": "Pourquoi préparer votre dossier?",
+        "content": "Un dossier médical bien préparé permet :\n• Une consultation plus rapide\n• Une prise en charge optimale\n• Un suivi médical cohérent\n• Une meilleure qualité de service\n\nCela montre aussi que vous êtes impliqué dans votre santé!",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "step-1-2",
+        "title": "Informations personnelles à préparer",
+        "content": "Avant votre visite, rassemblez :\n\n1. Identité complète (nom, prénom, date de naissance)\n2. Numéro de téléphone et adresse\n3. Numéro de secteur (si vous êtes enregistré)\n4. Informations d'urgence (contact personne d'urgence)\n5. Informations sur votre assurance/mutuelle si applicable\n\nAyez ces informations à portée de main.",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "step-1-3",
+        "title": "Documents et antécédents médicaux",
+        "content": "Si possible, apportez :\n\n• Carnet de vaccination (si vous en avez un)\n• Ordonnances précédentes\n• Résultats d'analyses médicales récentes\n• Courriers d'autres médecins\n• Traitement actuel (liste des médicaments que vous prenez)\n\nCes informations aident le médecin à mieux vous soigner.",
+        "order": 3,
+        "media": []
+      },
+      {
+        "id": "step-1-4",
+        "title": "Antécédents familiaux et allergies",
+        "content": "Notez les informations importantes :\n\n• Allergies (médicaments, aliments...)\n• Maladies chroniques (diabète, hypertension...)\n• Allergies familiales (parents, frères/sœurs)\n• Opérations chirurgicales antérieures\n\nCette information est CONFIDENTIELLE et très utile pour votre traitement.",
+        "order": 4,
+        "media": []
+      },
+      {
+        "id": "step-1-5",
+        "title": "Votre secteur et secteur d'église",
+        "content": "Lors de l'inscription, vous avez peut-être indiqué :\n\n• Votre secteur géographique de vie\n• Votre secteur d'église (si applicable)\n\nAyez ces informations en tête, elles permettent un meilleur suivi communautaire.",
+        "order": 5,
+        "media": []
+      },
+      {
+        "id": "step-1-6",
+        "title": "Vous êtes prêt(e)!",
+        "content": "Vous avez maintenant tout ce qu'il faut pour :\n\n✓ Venir à votre consultation\n✓ Avoir un suivi de qualité\n✓ Accélérer le processus d'enregistrement\n✓ Faciliter le travail de l'équipe médicale\n\nMerci de votre implication pour votre santé!\n\nProchain module: Présenter mon QR Code à l'accueil",
+        "order": 6,
+        "media": []
+      }
+    ],
+    "quiz": [
+      {
+        "id": "q1-1",
+        "question": "Quels sont les 3 bénéfices principaux d'une dossier bien préparé?",
+        "options": [
+          "Consultation plus rapide, prise en charge optimale, suivi cohérent",
+          "Gratuit, facile, et pas besoin de documents",
+          "Vous pouvez diagnostiquer vous-même",
+          "C'est obligatoire par la loi"
+        ],
+        "answerIndex": 0,
+        "order": 1
+      },
+      {
+        "id": "q1-2",
+        "question": "Que devriez-vous apporter si possible à votre visite?",
+        "options": [
+          "Uniquement de l'argent",
+          "Carnet de vaccination, ordonnances, résultats d'analyses",
+          "Rien, le médecin a accès à tout",
+          "Juste votre carte d'identité"
+        ],
+        "answerIndex": 1,
+        "order": 2
+      },
+      {
+        "id": "q1-3",
+        "question": "Pourquoi noter les allergies est-il important?",
+        "options": [
+          "C'est juste administratif",
+          "Cela permet au médecin de vous traiter en toute sécurité",
+          "Ce n'est pas nécessaire",
+          "Cela n'affecte pas le traitement"
+        ],
+        "answerIndex": 1,
+        "order": 3
+      },
+      {
+        "id": "q1-4",
+        "question": "Que devriez-vous noter concernant votre traitement actuel?",
+        "options": [
+          "Rien, ce n'est pas important",
+          "Seulement les médicaments payants",
+          "La liste complète des médicaments que vous prenez",
+          "Uniquement les injections"
+        ],
+        "answerIndex": 2,
+        "order": 4
+      },
+      {
+        "id": "q1-5",
+        "question": "Qui bénéficie d'un dossier bien préparé?",
+        "options": [
+          "Uniquement l'hôpital",
+          "Vous et l'équipe médicale",
+          "Personne",
+          "Seulement le médecin principal"
+        ],
+        "answerIndex": 1,
+        "order": 5
+      }
+    ]
+  },
+  {
+    "id": "module-2-qrcode",
+    "role": "PATIENT",
+    "title": "Présenter mon QR Code à l'accueil",
+    "shortDescription": "Faciliter votre enregistrement à l'accueil",
+    "description": "Découvrez comment utiliser votre QR Code pour vous enregistrer rapidement à l'accueil de la Brigade Médicale.",
+    "durationMinutes": 6,
+    "level": "Débutant",
+    "tags": ["qrcode", "accueil", "enregistrement"],
+    "imageUrl": "https://images.unsplash.com/photo-1516321318423-f06f70570ec0?w=400&h=300&fit=crop",
+    "createdAt": "2024-01-15T10:00:00Z",
+    "updatedAt": "2024-01-15T10:00:00Z",
+    "steps": [
+      {
+        "id": "step-2-1",
+        "title": "Qu'est-ce que le QR Code?",
+        "content": "Le QR Code est un code à barres en 2D qui contient vos informations d'identification :\n\n• Votre numéro de patient unique\n• Votre nom et prénom\n• Votre date de naissance\n• Votre secteur\n\nC'est un moyen rapide et sécurisé de confirmer votre identité.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "step-2-2",
+        "title": "Où trouver votre QR Code?",
+        "content": "Votre QR Code se trouve :\n\n1. Dans votre application mobile Brigade Médicale\n   → Allez à \"Mon profil\" ou \"Accueil\"\n   → Cherchez le bouton \"QR Code\"\n\n2. Dans votre espace patient en ligne\n   → Connectez-vous au portail patient\n   → Téléchargez ou imprimez votre QR Code\n\n3. Sur la carte de patient (si vous l'avez reçue)\n\nTéléchargez ou gardez l'application à portée de main!",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "step-2-3",
+        "title": "À votre arrivée à l'accueil",
+        "content": "Quand vous arrivez :\n\n1. Allez à la réception/accueil\n2. Dites: \"Bonjour, je viens pour une consultation\"\n3. Présentez votre QR Code:\n   • Via l'application sur votre téléphone\n   • Ou sur une version imprimée\n4. L'agent scandera le code\n\nVoilà! Vous êtes enregistré(e) et on peut vous donner votre numéro de file.",
+        "order": 3,
+        "media": []
+      },
+      {
+        "id": "step-2-4",
+        "title": "Avantages du QR Code",
+        "content": "Pourquoi utiliser le QR Code?\n\n✓ Plus rapide que l'enregistrement manuel\n✓ Moins d'erreurs (pas besoin d'épeler le nom)\n✓ Accès immédiat à votre dossier\n✓ Processus fluide sans file d'attente longue\n✓ Sécurisé - vos données restent confidentielles\n✓ Idéal pour les urgences\n✓ Fonctionne hors ligne aussi",
+        "order": 4,
+        "media": []
+      },
+      {
+        "id": "step-2-5",
+        "title": "Si votre QR Code ne fonctionne pas",
+        "content": "Si le scan échoue :\n\n1. Nettoyez l'écran de votre téléphone\n2. Vérifiez que l'image est claire et bien visible\n3. Essayez avec la version imprimée\n4. Dites à l'accueil: \"Je n'arrive pas à scanner\"\n\nVous pouvez vous enregistrer manuellement avec :\n• Votre numéro de patient\n• Votre nom et prénom\n• Votre date de naissance\n\nPas de stress, l'équipe vous aidera!",
+        "order": 5,
+        "media": []
+      },
+      {
+        "id": "step-2-6",
+        "title": "Vous êtes prêt(e)!",
+        "content": "Maintenant vous savez:\n\n✓ Où trouver votre QR Code\n✓ Comment le présenter à l'accueil\n✓ Les avantages du système\n✓ Quoi faire en cas de problème\n\nVous êtes prêt(e) pour une visite fluide et efficace!\n\nProchain module: Consulter mon carnet de santé",
+        "order": 6,
+        "media": []
+      }
+    ],
+    "quiz": [
+      {
+        "id": "q2-1",
+        "question": "Que contient votre QR Code?",
+        "options": [
+          "Juste votre nom",
+          "Votre numéro de patient, nom, prénom, date de naissance, secteur",
+          "Rien, c'est juste un décorateur",
+          "Seulement votre adresse"
+        ],
+        "answerIndex": 1,
+        "order": 1
+      },
+      {
+        "id": "q2-2",
+        "question": "Où pouvez-vous trouver votre QR Code?",
+        "options": [
+          "À la maison sur le mur",
+          "Application mobile, portail en ligne, carte de patient",
+          "Nulle part, vous ne l'avez pas",
+          "À la pharmacie uniquement"
+        ],
+        "answerIndex": 1,
+        "order": 2
+      },
+      {
+        "id": "q2-3",
+        "question": "Quel est le principal avantage du QR Code?",
+        "options": [
+          "C'est obligatoire",
+          "Cela fait joli",
+          "Enregistrement plus rapide et sans erreurs",
+          "Vous économisez de l'argent"
+        ],
+        "answerIndex": 2,
+        "order": 3
+      },
+      {
+        "id": "q2-4",
+        "question": "Que faire si votre QR Code ne scanne pas?",
+        "options": [
+          "Abandonner et partir",
+          "Nettoyer l'écran, essayer la version imprimée, vous enregistrer manuellement",
+          "Crier à l'accueil",
+          "Attendre une heure"
+        ],
+        "answerIndex": 1,
+        "order": 4
+      },
+      {
+        "id": "q2-5",
+        "question": "L'enregistrement manuel fonctionne-t-il si le QR Code échoue?",
+        "options": [
+          "Non, jamais",
+          "Oui, avec votre numéro de patient, nom et date de naissance",
+          "Seulement en fin de journée",
+          "Seulement les jours pairs"
+        ],
+        "answerIndex": 1,
+        "order": 5
+      }
+    ]
+  },
+  {
+    "id": "module-3-dossier",
+    "role": "PATIENT",
+    "title": "Consulter mon carnet de santé",
+    "shortDescription": "Accéder et comprendre mon dossier médical",
+    "description": "Apprenez à naviguer votre carnet de santé, voir vos consultations, analyses et ordonnances.",
+    "durationMinutes": 10,
+    "level": "Débutant",
+    "tags": ["carnet", "dossier", "consultations", "analyses"],
+    "imageUrl": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=300&fit=crop",
+    "createdAt": "2024-01-15T10:00:00Z",
+    "updatedAt": "2024-01-15T10:00:00Z",
+    "steps": [
+      {
+        "id": "step-3-1",
+        "title": "Bienvenue dans votre carnet de santé",
+        "content": "Votre carnet de santé (ou dossier médical) contient :\n\n• Vos informations personnelles\n• Historique de vos visites/consultations\n• Résultats d'analyses de laboratoire\n• Vos ordonnances et médicaments\n• Votre historique de vaccinations\n• Notes du médecin\n\nC'est VOTRE espace pour suivre votre santé!",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "step-3-2",
+        "title": "Accéder à votre carnet",
+        "content": "Pour consulter votre carnet de santé :\n\n1. Ouvrez l'application Brigade Médicale\n2. Connectez-vous avec votre numéro de patient\n3. Allez à \"Mon Carnet\" ou \"Accueil\"\n4. Vous voyez votre tableau de bord personnel\n\nAlternativement :\n• Portail en ligne: www.brigade-medicale.local/patient/dashboard\n• Sur ordinateur ou téléphone\n• Accessible 24h/24",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "step-3-3",
+        "title": "Les 4 sections principales",
+        "content": "Votre carnet contient 4 sections:\n\n1. MES VISITES\n   → Historique de toutes vos consultations\n   → Qui vous a vu, quand, et pourquoi\n\n2. CONSULTATIONS\n   → Détails complets de chaque visite\n   → Diagnostics et recommandations\n\n3. ANALYSES\n   → Résultats de tests de laboratoire\n   → Chiffres de santé (taille, poids, etc.)\n\n4. PHARMACIE\n   → Vos ordonnances actuelles\n   → Médicaments dispensés",
+        "order": 3,
+        "media": []
+      },
+      {
+        "id": "step-3-4",
+        "title": "Comment lire vos analyses",
+        "content": "Pour chaque analyse :\n\n1. Date du test\n2. Type d'analyse (prise de sang, radio, etc.)\n3. Résultats avec valeurs\n4. Valeurs de référence (normal, bas, haut)\n5. Interprétation du docteur\n\n💡 Les valeurs en VERT = normal\n💡 Les valeurs en JAUNE = à surveiller\n💡 Les valeurs en ROUGE = anormal, à voir avec le docteur\n\nN'hésitez pas à poser des questions!",
+        "order": 4,
+        "media": []
+      },
+      {
+        "id": "step-3-5",
+        "title": "Vos ordonnances et médicaments",
+        "content": "Chaque ordonnance indique :\n\n• Nom du médicament\n• Dosage (combien de mg)\n• Fréquence (matin/midi/soir)\n• Durée du traitement\n• Date de prescription\n• Statut: \"À récupérer\" ou \"Dispensé\"\n\n📋 Gardez une copie pour la pharmacie\n📋 Ne changez pas vos médicaments sans le médecin\n📋 Posez vos questions au pharmacien",
+        "order": 5,
+        "media": []
+      },
+      {
+        "id": "step-3-6",
+        "title": "Confidentialité et sécurité",
+        "content": "Votre carnet de santé est :\n\n✓ CONFIDENTIEL - Seul vous et le personnel médical pouvez le voir\n✓ PROTÉGÉ - Chiffrement et sécurité maximale\n✓ SAUVEGARDÉ - Vos données ne disparaissent jamais\n✓ VÔ TRE - Vous avez le droit d'accès complet\n\nVous pouvez:\n• Télécharger des documents\n• Imprimer vos dossiers\n• Partager avec un médecin si souhaité\n\nResponsabilité: changez votre mot de passe régulièrement!",
+        "order": 6,
+        "media": []
+      }
+    ],
+    "quiz": [
+      {
+        "id": "q3-1",
+        "question": "Qu'est-ce qui se trouve dans votre carnet de santé?",
+        "options": [
+          "Juste votre nom",
+          "Infos personnelles, consultations, analyses, ordonnances, vaccinations",
+          "Rien d'important",
+          "Uniquement les factures"
+        ],
+        "answerIndex": 1,
+        "order": 1
+      },
+      {
+        "id": "q3-2",
+        "question": "Comment accéder à votre carnet de santé?",
+        "options": [
+          "À la clinique uniquement",
+          "Application mobile, portail en ligne, 24h/24",
+          "Jamais, c'est secret",
+          "Seulement le dimanche"
+        ],
+        "answerIndex": 1,
+        "order": 2
+      },
+      {
+        "id": "q3-3",
+        "question": "Que signifie une valeur en ROUGE dans vos analyses?",
+        "options": [
+          "Rien de spécial",
+          "Résultat anormal, à voir avec le docteur",
+          "Vous êtes en bonne santé",
+          "C'est juste une couleur aléatoire"
+        ],
+        "answerIndex": 1,
+        "order": 3
+      },
+      {
+        "id": "q3-4",
+        "question": "Qui peut voir votre carnet de santé?",
+        "options": [
+          "Tout le monde",
+          "Seul vous et le personnel médical",
+          "Seulement le directeur",
+          "Vos amis aussi"
+        ],
+        "answerIndex": 1,
+        "order": 4
+      },
+      {
+        "id": "q3-5",
+        "question": "Pouvez-vous télécharger vos documents depuis votre carnet?",
+        "options": [
+          "Non, c'est interdit",
+          "Oui, pour votre dossier personnel",
+          "Seulement si le docteur accepte",
+          "Uniquement les analyses"
+        ],
+        "answerIndex": 1,
+        "order": 5
+      }
+    ]
+  },
+  {
+    "id": "module-4-ordonnance",
+    "role": "PATIENT",
+    "title": "Comprendre mon ordonnance et mes médicaments",
+    "shortDescription": "Bien prendre mes médicaments en toute sécurité",
+    "description": "Apprenez à lire votre ordonnance, comprendre la posologie et prendre vos médicaments correctement.",
+    "durationMinutes": 12,
+    "level": "Intermédiaire",
+    "tags": ["médicament", "ordonnance", "posologie", "sécurité"],
+    "imageUrl": "https://images.unsplash.com/photo-1631549916768-4c4ed2fe18a8?w=400&h=300&fit=crop",
+    "createdAt": "2024-01-15T10:00:00Z",
+    "updatedAt": "2024-01-15T10:00:00Z",
+    "steps": [
+      {
+        "id": "step-4-1",
+        "title": "Lire votre ordonnance",
+        "content": "Chaque ordonnance contient ces informations:\n\n1. NOM DU MÉDICAMENT\n   → Nom commercial et/ou générique\n   → Ne pas confondre avec un autre\n\n2. DOSAGE\n   → Quantité par prise (ex: 500 mg)\n   → IMPORTANT: respectez exactement ce dosage\n\n3. FORME\n   → Comprimé, gélule, sirop, injection...\n   → Comment prendre le médicament\n\n4. FRÉQUENCE\n   → Combien de fois par jour\n   → À quel moment (matin/midi/soir)\n\n5. DURÉE\n   → Pendant combien de jours/semaines\n   → À quel moment arrêter",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "step-4-2",
+        "title": "Comprendre la posologie",
+        "content": "LA POSOLOGIE = La manière de prendre le médicament\n\nExemples courants:\n\n\"1 comprimé 3 fois par jour\"\n→ Matin: 1 comprimé\n→ Midi: 1 comprimé\n→ Soir: 1 comprimé\n→ Total: 3 comprimés/jour\n\n\"1 cuillerée le soir au coucher\"\n→ Une seule fois, le soir\n→ Avant de dormir\n\n\"2 comprimés toutes les 8 heures\"\n→ 8h, 16h, 0h (minuit)\n→ Éviter de sauter des heures\n\n⚠️ RESPECTEZ EXACTEMENT LA POSOLOGIE!",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "step-4-3",
+        "title": "Avant/après les repas? Avec l'eau?",
+        "content": "Trois cas différents:\n\n1. \"À PRENDRE PENDANT LES REPAS\"\n   → Prenez le médicament avec ou après le repas\n   → Moins de problèmes d'estomac\n\n2. \"À JEUN (avant de manger)\"\n   → Prendre 30-60 min avant le petit-déjeuner\n   → L'aliment peut réduire l'efficacité\n   → Important: estomac vide\n\n3. \"SANS RELATION AVEC LES REPAS\"\n   → Vous pouvez prendre n'importe quand\n   → Le repas n'affecte pas le médicament\n\n💧 TOUJOURS boire un verre d'EAU\n❌ JAMAIS avec du jus, café ou alcool\n❌ JAMAIS mâcher ou avaler partiellement",
+        "order": 3,
+        "media": []
+      },
+      {
+        "id": "step-4-4",
+        "title": "Effets secondaires et précautions",
+        "content": "EFFETS SECONDAIRES = Réactions indésirables\n\nCommons (généralement inoffensifs):\n• Nausées légères\n• Maux de tête\n• Fatigue\n• Démangeaisons\n\nGRIEFS - Appelez le médecin IMMÉDIATEMENT:\n• Difficultés respiratoires\n• Gonflement du visage/gorge\n• Forte réaction allergique\n• Douleur thoracique\n• Éruption cutanée grave\n\nPRÉCAUTIONS:\n• Ne pas arrêter brutalement\n• Pas de double dose si oubli\n• Conservez à température ambiante\n• Éloignez des enfants\n• Continuez même si vous vous sentez mieux",
+        "order": 4,
+        "media": []
+      },
+      {
+        "id": "step-4-5",
+        "title": "Interactions avec d'autres médicaments",
+        "content": "INTERACTION = Quand 2 médicaments réagissent ensemble\n\nRISQUES:\n• L'un peut annuler l'autre\n• Effets secondaires augmentés\n• Peut être dangereux\n\nOÙ TROUVER CETTE INFO:\n• Ordonnance du médecin\n• Pharmacien (TRÈS IMPORTANT!)\n• Fiche du médicament\n\nQUE FAIRE:\n1. Listez TOUS vos médicaments actuels\n2. Montrez la liste au pharmacien\n3. Posez la question: \"Y a-t-il des interactions?\"\n4. Attendez la réponse avant de prendre\n\n⚠️ Les vitamines et compléments COMPTENT AUSSI!",
+        "order": 5,
+        "media": []
+      },
+      {
+        "id": "step-4-6",
+        "title": "Organisation et reminders",
+        "content": "CONSEILS POUR NE PAS OUBLIER:\n\n1. PILULIER hebdomadaire\n   → Remplissez le dimanche\n   → Voir en un coup d'œil\n\n2. ALARME sur téléphone\n   → Matin 8h, Midi 12h, Soir 20h\n   → Applications gratuites disponibles\n\n3. ROUTINE\n   → Toujours à la même heure\n   → Avec le brossage des dents par exemple\n\n4. NOTER\n   → Carnet simple\n   → Cocher quand vous prenez\n\n5. AIDE\n   → Demander à un proche\n   → Famille qui peut vérifier\n\nPLUS D'INFO:\n• Rendez-visite au pharmacien\n• Posez TOUTES vos questions\n• Ils sont là pour vous aider!\n• C'est gratuit, c'est normal",
+        "order": 6,
+        "media": []
+      }
+    ],
+    "quiz": [
+      {
+        "id": "q4-1",
+        "question": "Qu'est-ce que la posologie?",
+        "options": [
+          "Le nom du médicament",
+          "La manière de prendre le médicament (dosage, fréquence, durée)",
+          "Le prix du médicament",
+          "L'emballage"
+        ],
+        "answerIndex": 1,
+        "order": 1
+      },
+      {
+        "id": "q4-2",
+        "question": "Si l'ordonnance dit '2 comprimés 3 fois par jour', combien prenez-vous par jour?",
+        "options": [
+          "1 comprimé",
+          "2 comprimés",
+          "6 comprimés",
+          "Ça dépend de mon envie"
+        ],
+        "answerIndex": 2,
+        "order": 2
+      },
+      {
+        "id": "q4-3",
+        "question": "Que signifie 'À JEUN'?",
+        "options": [
+          "N'importe quand",
+          "Avec un repas copieux",
+          "Estomac vide, 30-60 min avant le petit-déjeuner",
+          "Avec de l'alcool"
+        ],
+        "answerIndex": 2,
+        "order": 3
+      },
+      {
+        "id": "q4-4",
+        "question": "Qu'est-ce qu'une interaction médicamenteuse?",
+        "options": [
+          "Quand vous prenez 2 comprimés",
+          "Quand 2 médicaments réagissent ensemble, ce qui peut être dangereux",
+          "Quand vous oubliez votre médicament",
+          "Quand vous allez voir le docteur"
+        ],
+        "answerIndex": 1,
+        "order": 4
+      },
+      {
+        "id": "q4-5",
+        "question": "Que faire si vous oubliez une dose?",
+        "options": [
+          "Prendre 2 doses le lendemain",
+          "Ne pas doubler la dose, prendre la suivante à l'heure habituelle",
+          "Arrêter le médicament",
+          "Prendre une dose supplémentaire le même jour"
+        ],
+        "answerIndex": 1,
+        "order": 5
+      }
+    ]
+  },
+  {
+    "id": "module-5-messages",
+    "role": "PATIENT",
+    "title": "Rester informé: Messages et annonces de la clinique",
+    "shortDescription": "Recevoir et comprendre les messages importants",
+    "description": "Apprenez comment recevoir les messages de la Brigade Médicale et rester informé des informations de santé importantes.",
+    "durationMinutes": 7,
+    "level": "Débutant",
+    "tags": ["messages", "annonces", "notifications", "communication"],
+    "imageUrl": "https://images.unsplash.com/photo-1534524114526-88f1d78c2d0e?w=400&h=300&fit=crop",
+    "createdAt": "2024-01-15T10:00:00Z",
+    "updatedAt": "2024-01-15T10:00:00Z",
+    "steps": [
+      {
+        "id": "step-5-1",
+        "title": "Types de messages que vous recevrez",
+        "content": "Vous pouvez recevoir 4 types de messages:\n\n1. ANNONCES\n   → Informations importantes sur la clinique\n   → Horaires, fermetures, évènements\n   → À lire à votre convenance\n\n2. CONSEILS SANTÉ\n   → Recommandations médicales\n   → Prévention et bien-être\n   → Utiles pour votre santé\n\n3. RAPPELS\n   → Vos rendez-vous à venir\n   → Rappels de prise de médicaments\n   → Dates importantes\n\n4. URGENCES\n   → Messages prioritaires\n   → Peuvent être critiques\n   → À lire immédiatement",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "step-5-2",
+        "title": "Comment recevoir les messages",
+        "content": "TROIS FAÇONS DE RECEVOIR LES MESSAGES:\n\n1. APPLICATION MOBILE\n   → Les plus rapides\n   → Notifications push\n   → Lisez n'importe quand\n\n2. EMAIL\n   → Assurez votre email est à jour\n   → Vérifiez vos spams\n   → Bon pour archiver\n\n3. SMS/WHATSAPP\n   → Urgent ou important\n   → Vérifie votre numéro de téléphone\n   → Réponse rapide possible\n\nVOUS POUVEZ CHOISIR:\n→ Paramètres / Préférences\n→ Sélectionnez comment être contacté\n→ Fréquence des notifications",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "step-5-3",
+        "title": "Messages dans votre tableau de bord",
+        "content": "DANS VOTRE CARNET DE SANTÉ:\n\n1. ICÔNE \"MESSAGES\"\n   → Badge rouge = nouveaux messages\n   → Nombre indique combien de nouveaux\n\n2. CLIQUEZ POUR VOIR:\n   → Message complet\n   → Date d'envoi\n   → Importance (couleur)\n\n3. ACTIONS POSSIBLES:\n   → Lire\n   → Archiver\n   → Marquer comme lu\n   → Signaler si spam\n\n4. IMPORTANT:\n   → Ne supprimez pas les importants\n   → Gardez trace des consignes médicales\n   → Prenez des notes si nécessaire",
+        "order": 3,
+        "media": []
+      },
+      {
+        "id": "step-5-4",
+        "title": "Conseils santé: qu'apprendre",
+        "content": "LES CONSEILS SANTÉ COUVRENT:\n\n• NUTRITION\n  - Équilibre alimentaire\n  - Aliments à favoriser/éviter\n\n• EXERCICE\n  - Activité physique\n  - Exercices simples à la maison\n\n• PRÉVENTION\n  - Comment éviter les maladies\n  - Vaccinations importantes\n\n• HYGIÈNE\n  - Prévention infections\n  - Hygiène personnelle\n\n• STRESS ET SOMMEIL\n  - Gestion du stress\n  - Sommeil de qualité\n\n💡 UTILITÉ:\n→ Ces conseils GRATUITS\n→ Écrits par des professionnels\n→ Adaptés à votre situation\n→ À appliquer dans votre vie",
+        "order": 4,
+        "media": []
+      },
+      {
+        "id": "step-5-5",
+        "title": "Rappels de rendez-vous et médicaments",
+        "content": "RAPPELS DE RENDEZ-VOUS:\n\n📅 Vous recevrez un message:\n→ 7 jours avant votre rendez-vous\n→ 1 jour avant\n→ Heure du rendez-vous\n\n✓ Confirmez votre présence\n✓ Changez si besoin\n✓ Posez vos questions\n\nRAVPELLS DE MÉDICAMENTS:\n\n💊 Si prescrit:\n→ Rappel de prendre à l'heure\n→ Via notification app\n→ Ou SMS selon vos préférences\n\nOPTIONS:\n• Activer/désactiver dans paramètres\n• Choisir l'heure du rappel\n• Plusieurs par jour si besoin",
+        "order": 5,
+        "media": []
+      },
+      {
+        "id": "step-5-6",
+        "title": "Rester engagé pour votre santé",
+        "content": "COMMENT UTILISER LES MESSAGES EFFICACEMENT:\n\n✓ LIRE RÉGULIÈREMENT\n  - Consultez les messages chaque jour\n  - Ne laissez pas s'accumuler\n\n✓ APPLIQUER LES CONSEILS\n  - Les conseils santé sont pour vous\n  - Essayez de les suivre\n\n✓ SIGNALER LES PROBLÈMES\n  - Des questions? Répondez au message\n  - L'équipe vous aidera\n\n✓ GARDER TRACE\n  - Les consignes médicales sont importantes\n  - Notez si vous avez un doute\n\n✓ METTRE À JOUR VOTRE CONTACT\n  - Email valide\n  - Téléphone correct\n  - Adresse à jour\n\nCONCLUSION:\nVous êtes maintenant prêt(e) à profiter au maximum de votre carnet de santé et rester informé(e)!\n\n🎓 Félicitations! Vous avez complété ce module!",
+        "order": 6,
+        "media": []
+      }
+    ],
+    "quiz": [
+      {
+        "id": "q5-1",
+        "question": "Combien de types de messages pouvez-vous recevoir?",
+        "options": [
+          "1 seul type",
+          "2 types",
+          "Annonces, conseils santé, rappels, urgences",
+          "Infinité de types"
+        ],
+        "answerIndex": 2,
+        "order": 1
+      },
+      {
+        "id": "q5-2",
+        "question": "De quelles 3 façons pouvez-vous recevoir les messages?",
+        "options": [
+          "Pigeon voyageur uniquement",
+          "Application mobile, email, SMS/WhatsApp",
+          "Que par SMS",
+          "Seulement en personne"
+        ],
+        "answerIndex": 1,
+        "order": 2
+      },
+      {
+        "id": "q5-3",
+        "question": "Comment savez-vous qu'il y a un nouveau message?",
+        "options": [
+          "Vous ne savez jamais",
+          "Badge rouge avec nombre de nouveaux messages",
+          "Vous devez demander à la réception",
+          "Jamais de notifications"
+        ],
+        "answerIndex": 1,
+        "order": 3
+      },
+      {
+        "id": "q5-4",
+        "question": "Quels sujets couvrent les conseils santé?",
+        "options": [
+          "Seulement politique",
+          "Nutrition, exercice, prévention, hygiène, stress, sommeil",
+          "Que les films",
+          "Les jeux vidéo"
+        ],
+        "answerIndex": 1,
+        "order": 4
+      },
+      {
+        "id": "q5-5",
+        "question": "Quand recevez-vous un rappel de rendez-vous?",
+        "options": [
+          "Jamais",
+          "7 jours avant, 1 jour avant, et à l'heure du rendez-vous",
+          "1 mois avant",
+          "Pendant la consultation"
+        ],
+        "answerIndex": 1,
+        "order": 5
+      }
+    ]
+  }
+]

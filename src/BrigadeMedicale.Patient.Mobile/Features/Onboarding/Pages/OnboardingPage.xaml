@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BrigadeMedicale.Patient.Mobile.Features.Onboarding.Pages.OnboardingPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="0" Margin="0">
+
+        <!-- Header Teal Custom -->
+        <Grid Grid.Row="0" RowDefinitions="Auto" ColumnDefinitions="Auto,*,Auto" BackgroundColor="{StaticResource Primary}" Padding="16,12">
+            <Button
+                Grid.Column="0"
+                Text="✕"
+                TextColor="{StaticResource White}"
+                BackgroundColor="Transparent"
+                FontSize="24"
+                Padding="8"
+                Margin="0"
+                MinimumHeightRequest="44"
+                MinimumWidthRequest="44"
+                Clicked="OnCloseClicked" />
+
+            <Label
+                Grid.Column="1"
+                Text="Créer un compte"
+                TextColor="{StaticResource White}"
+                FontSize="18"
+                FontFamily="OpenSansSemibold"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+
+            <Label Grid.Column="2" />
+        </Grid>
+
+        <!-- Stepper Indicator -->
+        <Grid Grid.Row="0" RowDefinitions="50" ColumnDefinitions="*" BackgroundColor="{StaticResource Primary}" Padding="24,0" VerticalOptions="End" Margin="0,50,0,0">
+            <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+                <!-- Step 1 Circle -->
+                <Border
+                    WidthRequest="36"
+                    HeightRequest="36"
+                    CornerRadius="18"
+                    BackgroundColor="{StaticResource White}"
+                    StrokeThickness="0">
+                    <Label
+                        Text="1"
+                        TextColor="{StaticResource Primary}"
+                        FontSize="16"
+                        FontFamily="OpenSansSemibold"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        HorizontalTextAlignment="Center" />
+                </Border>
+
+                <!-- Connector Line -->
+                <BoxView
+                    WidthRequest="40"
+                    HeightRequest="2"
+                    Color="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"
+                    Opacity="0.5"
+                    VerticalOptions="Center" />
+
+                <!-- Step 2 Circle -->
+                <Border
+                    WidthRequest="36"
+                    HeightRequest="36"
+                    CornerRadius="18"
+                    BackgroundColor="Transparent"
+                    Stroke="{StaticResource White}"
+                    StrokeThickness="2">
+                    <Label
+                        Text="2"
+                        TextColor="{StaticResource White}"
+                        FontSize="16"
+                        FontFamily="OpenSansSemibold"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        HorizontalTextAlignment="Center" />
+                </Border>
+            </HorizontalStackLayout>
+        </Grid>
+
+        <!-- Main Content -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="24" Spacing="20" VerticalOptions="Start">
+
+                <!-- STEP 1: Identité -->
+                <VerticalStackLayout
+                    IsVisible="{Binding CurrentStep, Converter={StaticResource StepConverter}, ConverterParameter=1}"
+                    Spacing="16">
+
+                    <Label
+                        Text="Informations personnelles"
+                        FontSize="18"
+                        FontFamily="OpenSansSemibold"
+                        TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryLight}}" />
+
+                    <!-- Prénom -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Prénom" FontSize="13" FontFamily="OpenSansSemibold" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        <Frame CornerRadius="8" BorderColor="{AppThemeBinding Light={StaticResource InputBorderLight}, Dark={StaticResource InputBorderDark}}" Padding="12,0" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}" HasShadow="False">
+                            <Entry Text="{Binding FirstName}" Placeholder="Votre prénom" BackgroundColor="Transparent" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" PlaceholderColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}" FontSize="14" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <!-- Nom -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Nom" FontSize="13" FontFamily="OpenSansSemibold" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        <Frame CornerRadius="8" BorderColor="{AppThemeBinding Light={StaticResource InputBorderLight}, Dark={StaticResource InputBorderDark}}" Padding="12,0" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}" HasShadow="False">
+                            <Entry Text="{Binding LastName}" Placeholder="Votre nom" BackgroundColor="Transparent" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" PlaceholderColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}" FontSize="14" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <!-- Date de Naissance -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Date de naissance" FontSize="13" FontFamily="OpenSansSemibold" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        <Frame CornerRadius="8" BorderColor="{AppThemeBinding Light={StaticResource InputBorderLight}, Dark={StaticResource InputBorderDark}}" Padding="12,0" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}" HasShadow="False">
+                            <DatePicker Date="{Binding DateOfBirth}" BackgroundColor="Transparent" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <!-- Sexe - RadioButton Group -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Sexe" FontSize="13" FontFamily="OpenSansSemibold" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        <HorizontalStackLayout Spacing="12">
+                            <RadioButton Content="Homme" Value="{Static local:Gender.Male}" GroupName="Gender" CheckedChanged="OnGenderChanged" />
+                            <RadioButton Content="Femme" Value="{Static local:Gender.Female}" GroupName="Gender" CheckedChanged="OnGenderChanged" />
+                            <RadioButton Content="Autre" Value="{Static local:Gender.Other}" GroupName="Gender" CheckedChanged="OnGenderChanged" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+
+                    <!-- Téléphone -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Numéro de téléphone *" FontSize="13" FontFamily="OpenSansSemibold" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        <Frame CornerRadius="8" BorderColor="{AppThemeBinding Light={StaticResource InputBorderLight}, Dark={StaticResource InputBorderDark}}" Padding="12,0" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}" HasShadow="False">
+                            <Entry Text="{Binding PhoneNumber}" Placeholder="+243 XXX XXX XXX" Keyboard="Telephone" BackgroundColor="Transparent" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" PlaceholderColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}" FontSize="14" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <!-- Secteur - Dropdown for ActionSheet -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Secteur *" FontSize="13" FontFamily="OpenSansSemibold" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        <Button
+                            x:Name="SectorButton"
+                            Text="{Binding SelectedSector, StringFormat='Sélectionner un secteur'}"
+                            Style="{StaticResource DropdownButton}"
+                            Clicked="OnSectorClicked" />
+                    </VerticalStackLayout>
+
+                    <!-- Status Message -->
+                    <Label
+                        Text="{Binding StatusMessage}"
+                        IsVisible="{Binding StatusMessage, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+                        TextColor="{StaticResource Error}"
+                        FontSize="13" />
+
+                </VerticalStackLayout>
+
+                <!-- STEP 2: Santé -->
+                <VerticalStackLayout
+                    IsVisible="{Binding CurrentStep, Converter={StaticResource StepConverter}, ConverterParameter=2}"
+                    Spacing="16">
+
+                    <Label
+                        Text="Informations de santé"
+                        FontSize="18"
+                        FontFamily="OpenSansSemibold"
+                        TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryLight}}" />
+
+                    <!-- Adresse -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Adresse" FontSize="13" FontFamily="OpenSansSemibold" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        <Frame CornerRadius="8" BorderColor="{AppThemeBinding Light={StaticResource InputBorderLight}, Dark={StaticResource InputBorderDark}}" Padding="12,0" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}" HasShadow="False">
+                            <Entry Text="{Binding Address}" Placeholder="Votre adresse" BackgroundColor="Transparent" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" PlaceholderColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}" FontSize="14" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <!-- Ville -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Ville" FontSize="13" FontFamily="OpenSansSemibold" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        <Frame CornerRadius="8" BorderColor="{AppThemeBinding Light={StaticResource InputBorderLight}, Dark={StaticResource InputBorderDark}}" Padding="12,0" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}" HasShadow="False">
+                            <Entry Text="{Binding City}" Placeholder="Kinshasa" BackgroundColor="Transparent" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" PlaceholderColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}" FontSize="14" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <!-- Groupe Sanguin - Dropdown -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Groupe sanguin" FontSize="13" FontFamily="OpenSansSemibold" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        <Button
+                            x:Name="BloodTypeButton"
+                            Text="{Binding BloodType, StringFormat='Sélectionner votre groupe sanguin'}"
+                            Style="{StaticResource DropdownButton}"
+                            Clicked="OnBloodTypeClicked" />
+                    </VerticalStackLayout>
+
+                    <!-- Allergies -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Allergies" FontSize="13" FontFamily="OpenSansSemibold" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        <Frame CornerRadius="8" BorderColor="{AppThemeBinding Light={StaticResource InputBorderLight}, Dark={StaticResource InputBorderDark}}" Padding="12,8" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}" HasShadow="False">
+                            <Editor Text="{Binding Allergies}" Placeholder="Décrivez vos allergies" BackgroundColor="Transparent" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" PlaceholderColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}" FontSize="14" HeightRequest="80" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <!-- Maladies Chroniques -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Maladies chroniques" FontSize="13" FontFamily="OpenSansSemibold" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        <Frame CornerRadius="8" BorderColor="{AppThemeBinding Light={StaticResource InputBorderLight}, Dark={StaticResource InputBorderDark}}" Padding="12,8" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}" HasShadow="False">
+                            <Editor Text="{Binding ChronicDiseases}" Placeholder="Décrivez vos maladies chroniques" BackgroundColor="Transparent" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" PlaceholderColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}" FontSize="14" HeightRequest="80" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <!-- Originaire d'une église - Switch -->
+                    <VerticalStackLayout Spacing="8">
+                        <HorizontalStackLayout Spacing="12" VerticalOptions="Center">
+                            <Switch IsToggled="{Binding IsFromChurch}" />
+                            <Label
+                                Text="Originaire d'une église"
+                                FontSize="13"
+                                FontFamily="OpenSansRegular"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                                VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+
+                    <!-- Secteur d'église - Dropdown (Conditional) -->
+                    <VerticalStackLayout
+                        IsVisible="{Binding IsFromChurch}"
+                        Spacing="8">
+                        <Label Text="Secteur d'église" FontSize="13" FontFamily="OpenSansSemibold" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        <Button
+                            x:Name="ChurchSectorButton"
+                            Text="{Binding SelectedChurchSector, StringFormat='Sélectionner un secteur d\'église'}"
+                            Style="{StaticResource DropdownButton}"
+                            Clicked="OnChurchSectorClicked" />
+                    </VerticalStackLayout>
+
+                    <!-- Status Message -->
+                    <Label
+                        Text="{Binding StatusMessage}"
+                        IsVisible="{Binding StatusMessage, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+                        TextColor="{StaticResource Error}"
+                        FontSize="13" />
+
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Navigation Buttons Footer -->
+        <Grid
+            Grid.Row="2"
+            ColumnDefinitions="*,*"
+            ColumnSpacing="12"
+            Padding="24,12,24,24"
+            BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}"
+            RowDefinitions="Auto"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}}">
+
+            <!-- Step 1 Buttons -->
+            <HorizontalStackLayout
+                IsVisible="{Binding CurrentStep, Converter={StaticResource StepConverter}, ConverterParameter=1}"
+                Spacing="12"
+                Grid.Column="0"
+                Grid.ColumnSpan="2">
+                <Button
+                    Text="Retour"
+                    Style="{StaticResource SecondaryButton}"
+                    Clicked="OnBackClicked"
+                    WidthRequest="0"
+                    HorizontalOptions="Fill" />
+                <Button
+                    Text="Suivant →"
+                    Style="{StaticResource PrimaryButton}"
+                    Command="{Binding NextStepCommand}"
+                    WidthRequest="0"
+                    HorizontalOptions="Fill" />
+            </HorizontalStackLayout>
+
+            <!-- Step 2 Buttons -->
+            <HorizontalStackLayout
+                IsVisible="{Binding CurrentStep, Converter={StaticResource StepConverter}, ConverterParameter=2}"
+                Spacing="12"
+                Grid.Column="0"
+                Grid.ColumnSpan="2">
+                <Button
+                    Text="← Précédent"
+                    Style="{StaticResource SecondaryButton}"
+                    Command="{Binding PreviousStepCommand}"
+                    WidthRequest="0"
+                    HorizontalOptions="Fill" />
+                <Button
+                    Text="S'inscrire"
+                    Style="{StaticResource PrimaryButton}"
+                    Clicked="OnRegisterClicked"
+                    WidthRequest="0"
+                    HorizontalOptions="Fill" />
+            </HorizontalStackLayout>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

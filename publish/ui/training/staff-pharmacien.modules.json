@@ -1,0 +1,110 @@
+[
+  {
+    "id": "pharmacien-001-management",
+    "role": "PHARMACIEN",
+    "title": "Gestion des Médicaments et Inventaire",
+    "description": "Gestion efficace du stock de médicaments et des fournitures pharmaceutiques.",
+    "shortDescription": "Stock et inventaire pharmaceutique",
+    "durationMinutes": 45,
+    "level": "Intermédiaire",
+    "tags": ["pharmacie", "stock", "médicaments"],
+    "imageUrl": null,
+    "createdAt": "2024-01-15T10:00:00Z",
+    "updatedAt": "2024-01-15T10:00:00Z",
+    "steps": [
+      {
+        "id": "pharmacien-001-step-1",
+        "title": "Système de classification des médicaments",
+        "content": "Classification utilisée:\n\n1. Par forme (comprimés, injections, etc.)\n2. Par indication thérapeutique\n3. Par alphabet (système généralement préféré)\n4. Par rangée et numéro\n\nUne bonne organisation facilite le travail.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "pharmacien-001-step-2",
+        "title": "Gestion des stocks",
+        "content": "Bonnes pratiques de stock:\n\n1. Vérifier les dates d'expiration\n2. Maintenir les niveaux minimums\n3. FIFO (Premier entré, premier sorti)\n4. Signaler les ruptures de stock\n5. Audits d'inventaire réguliers\n6. Documentation précise\n\nUn bon stock assure la disponibilité des médicaments.",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "pharmacien-001-step-3",
+        "title": "Réception et entreposage",
+        "content": "Processus de réception:\n\n- Vérifier l'intégrité des colis\n- Vérifier la quantité reçue\n- Vérifier les dates d'expiration\n- Vérifier la correspondance avec la commande\n- Entreposage dans les conditions appropriées\n- Mise à jour du système\n\nLa réception correcte prévient les problèmes.",
+        "order": 3,
+        "media": []
+      }
+    ]
+  },
+  {
+    "id": "pharmacien-002-dispensing",
+    "role": "PHARMACIEN",
+    "title": "Préparation et Dispensation des Médicaments",
+    "description": "Techniques correctes de préparation et dispensation des médicaments aux patients.",
+    "shortDescription": "Dispensation et préparation",
+    "durationMinutes": 40,
+    "level": "Intermédiaire",
+    "tags": ["dispensation", "préparation", "patient"],
+    "imageUrl": null,
+    "createdAt": "2024-01-20T10:00:00Z",
+    "updatedAt": "2024-01-20T10:00:00Z",
+    "steps": [
+      {
+        "id": "pharmacien-002-step-1",
+        "title": "Vérification de l'ordonnance",
+        "content": "Points de vérification:\n\n1. Patient correct\n2. Médicament correct\n3. Dose correcte\n4. Voie d'administration correcte\n5. Fréquence correcte\n6. Contre-indications vérifiées\n7. Interactions vérifiées\n\nLe contrôle des 5 ou 7 éléments est essentiel.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "pharmacien-002-step-2",
+        "title": "Préparation des doses",
+        "content": "Processus de préparation:\n\n1. Rassembler les matériaux nécessaires\n2. Préparer dans une zone propre\n3. Mesurer les quantités précises\n4. Étiqueter clairement\n5. Vérifier avant de servir\n6. Enregistrer la distribution\n\nLa précision prévient les erreurs.",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "pharmacien-002-step-3",
+        "title": "Conseil au patient",
+        "content": "Instructions au patient:\n\n- Expliquer l'utilisation du médicament\n- Démontrer si nécessaire\n- Effets secondaires possibles\n- Interactions alimentaires/autres\n- Quand contacter le médecin\n- Questions et clarifications\n\nUn patient informé prend mieux ses médicaments.",
+        "order": 3,
+        "media": []
+      }
+    ]
+  },
+  {
+    "id": "pharmacien-003-interactions",
+    "role": "PHARMACIEN",
+    "title": "Interactions Médicamenteuses et Vigilance",
+    "description": "Identification et gestion des interactions et des effets indésirables.",
+    "shortDescription": "Interactions et pharmacovigilance",
+    "durationMinutes": 50,
+    "level": "Avancé",
+    "tags": ["interactions", "effets", "vigilance"],
+    "imageUrl": null,
+    "createdAt": "2024-01-25T10:00:00Z",
+    "updatedAt": "2024-01-25T10:00:00Z",
+    "steps": [
+      {
+        "id": "pharmacien-003-step-1",
+        "title": "Types d'interactions",
+        "content": "Interactions courantes:\n\n1. Médicament-médicament\n2. Médicament-nourriture\n3. Médicament-alcool\n4. Médicament-maladie\n\nChaque type nécessite une approche différente.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "pharmacien-003-step-2",
+        "title": "Identification des risques",
+        "content": "Signes d'alerte:\n\n- Âge avancé du patient\n- Maladies hépatiques/rénales\n- Allergies connues\n- Polypharmacy (> 5 médicaments)\n- Antécédents d'effets indésirables\n\nIdentifier les risques permet de les gérer.",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "pharmacien-003-step-3",
+        "title": "Signalement des effets indésirables",
+        "content": "Pharmacovigilance:\n\n1. Écouter les rapports de patients\n2. Documenter les événements\n3. Signaler au système approprié\n4. Notifier le médecin\n5. Suivi de l'issue\n6. Analyse des tendances\n\nLa vigilance améliore la sécurité.",
+        "order": 3,
+        "media": []
+      }
+    ]
+  }
+]

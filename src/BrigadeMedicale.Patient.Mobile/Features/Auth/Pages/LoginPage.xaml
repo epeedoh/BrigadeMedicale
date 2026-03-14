@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="BrigadeMedicale.Patient.Mobile.Features.Auth.Pages.LoginPage"
+             Title="Connexion"
+             Shell.NavBarIsVisible="True"
+             BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}">
+
+    <Grid RowDefinitions="*,Auto" Padding="0" Margin="0">
+
+        <!-- Main Content -->
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="24" Spacing="24" VerticalOptions="Start">
+
+                <!-- Header -->
+                <VerticalStackLayout Spacing="8">
+                    <Label
+                        Text="Bonjour 👋"
+                        FontSize="24"
+                        FontFamily="OpenSansSemibold"
+                        TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryLight}}" />
+
+                    <Label
+                        Text="Connectez-vous avec vos identifiants"
+                        FontSize="13"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"
+                        LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
+
+                <!-- Form Card -->
+                <Frame Style="{StaticResource CardStyle}" Padding="20">
+                    <VerticalStackLayout Spacing="16">
+
+                        <!-- Numéro Patient -->
+                        <VerticalStackLayout Spacing="8">
+                            <Label
+                                Text="Numéro de patient"
+                                FontSize="13"
+                                FontFamily="OpenSansSemibold"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+
+                            <Frame
+                                CornerRadius="8"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+                                BorderColor="{AppThemeBinding Light={StaticResource InputBorderLight}, Dark={StaticResource InputBorderDark}}"
+                                Padding="12,0"
+                                HasShadow="False">
+                                <Entry
+                                    x:Name="PatientNumberEntry"
+                                    Placeholder="Ex: BM-2024-12345"
+                                    Text="{Binding PatientNumber}"
+                                    Keyboard="Text"
+                                    ReturnType="Next"
+                                    TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                                    PlaceholderColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}"
+                                    FontFamily="OpenSansRegular"
+                                    FontSize="14"
+                                    VerticalOptions="Center"
+                                    BackgroundColor="Transparent" />
+                            </Frame>
+                        </VerticalStackLayout>
+
+                        <!-- Téléphone -->
+                        <VerticalStackLayout Spacing="8">
+                            <Label
+                                Text="Numéro de téléphone"
+                                FontSize="13"
+                                FontFamily="OpenSansSemibold"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+
+                            <Frame
+                                CornerRadius="8"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+                                BorderColor="{AppThemeBinding Light={StaticResource InputBorderLight}, Dark={StaticResource InputBorderDark}}"
+                                Padding="12,0"
+                                HasShadow="False">
+                                <Entry
+                                    x:Name="PhoneNumberEntry"
+                                    Placeholder="+243 XXX XXX XXX"
+                                    Text="{Binding PhoneNumber}"
+                                    Keyboard="Telephone"
+                                    ReturnType="Done"
+                                    TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                                    PlaceholderColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}"
+                                    FontFamily="OpenSansRegular"
+                                    FontSize="14"
+                                    VerticalOptions="Center"
+                                    BackgroundColor="Transparent" />
+                            </Frame>
+                        </VerticalStackLayout>
+
+                        <!-- Status Message (Single Label with conditional color) -->
+                        <Label
+                            x:Name="StatusLabel"
+                            Text="{Binding StatusMessage}"
+                            IsVisible="{Binding StatusMessage, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+                            TextColor="{Binding IsError, Converter={toolkit:IsNotEqualConverter}, ConverterParameter=true, StringFormat='{0}'}"
+                            FontSize="13"
+                            FontFamily="OpenSansRegular"
+                            LineBreakMode="WordWrap">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="ErrorStates">
+                                    <VisualState x:Name="Error">
+                                        <VisualState.StateTriggers>
+                                            <toolkit:CompareStateTrigger Value="{Binding IsError}" ComparingValue="True"/>
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="TextColor" Value="{StaticResource Error}"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Success">
+                                        <VisualState.StateTriggers>
+                                            <toolkit:CompareStateTrigger Value="{Binding IsError}" ComparingValue="False"/>
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="TextColor" Value="{StaticResource Success}"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Label>
+
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Info Card -->
+                <Frame
+                    CornerRadius="8"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryVeryLight}, Dark={StaticResource Gray950}}"
+                    BorderColor="{StaticResource Primary}"
+                    Padding="16"
+                    HasShadow="False">
+                    <VerticalStackLayout Spacing="8">
+                        <Label
+                            Text="Besoin d'aide ?"
+                            FontSize="13"
+                            FontFamily="OpenSansSemibold"
+                            TextColor="{StaticResource Primary}" />
+                        <Label
+                            Text="Contactez notre support au +243 815 XXX XXX"
+                            FontSize="12"
+                            TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"
+                            LineBreakMode="WordWrap" />
+                    </VerticalStackLayout>
+                </Frame>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Action Buttons Footer -->
+        <VerticalStackLayout
+            Grid.Row="1"
+            Padding="24,12,24,24"
+            Spacing="12"
+            BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}}">
+
+            <Button
+                Text="Se connecter"
+                Style="{StaticResource PrimaryButton}"
+                Command="{Binding LoginCommand}" />
+
+            <Button
+                Text="Pas de compte ? S'inscrire →"
+                Style="{StaticResource LinkButton}"
+                Command="{Binding RegisterCommand}"
+                Margin="0,8,0,0" />
+
+        </VerticalStackLayout>
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,190 @@
+<div class="container mx-auto px-4 py-8 max-w-2xl">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">
+      {{ isEditMode ? 'Modifier l\'utilisateur' : 'Créer un utilisateur' }}
+    </h1>
+    <p class="text-gray-600">
+      {{ isEditMode ? 'Modifiez les informations de l\'utilisateur' : 'Ajoutez un nouveau membre du personnel' }}
+    </p>
+  </div>
+
+  <div class="bg-white rounded-lg shadow-md p-6">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <p class="text-red-800 text-sm">{{ errorMessage }}</p>
+      </div>
+
+      <!-- Username (Create only) -->
+      <div *ngIf="!isEditMode" class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          Nom d'utilisateur <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="text"
+          formControlName="username"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          [class.border-red-500]="username?.invalid && username?.touched"
+        />
+        <p *ngIf="username?.invalid && username?.touched" class="mt-1 text-sm text-red-600">
+          <span *ngIf="username?.errors?.['required']">Le nom d'utilisateur est requis</span>
+          <span *ngIf="username?.errors?.['minlength']">Minimum 3 caractères</span>
+        </p>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          Email <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="email"
+          formControlName="email"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          [class.border-red-500]="email?.invalid && email?.touched"
+        />
+        <p *ngIf="email?.invalid && email?.touched" class="mt-1 text-sm text-red-600">
+          <span *ngIf="email?.errors?.['required']">L'email est requis</span>
+          <span *ngIf="email?.errors?.['email']">Email invalide</span>
+        </p>
+      </div>
+
+      <!-- Password (Create only) -->
+      <div *ngIf="!isEditMode">
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Mot de passe <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="password"
+            formControlName="password"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            [class.border-red-500]="password?.invalid && password?.touched"
+          />
+          <p *ngIf="password?.invalid && password?.touched" class="mt-1 text-sm text-red-600">
+            <span *ngIf="password?.errors?.['required']">Le mot de passe est requis</span>
+            <span *ngIf="password?.errors?.['minlength']">Minimum 6 caractères</span>
+          </p>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Confirmer le mot de passe <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="password"
+            formControlName="confirmPassword"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            [class.border-red-500]="confirmPassword?.invalid && confirmPassword?.touched || userForm.errors?.['passwordMismatch'] && confirmPassword?.touched"
+          />
+          <p *ngIf="userForm.errors?.['passwordMismatch'] && confirmPassword?.touched" class="mt-1 text-sm text-red-600">
+            Les mots de passe ne correspondent pas
+          </p>
+        </div>
+      </div>
+
+      <!-- First Name -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          Prénom <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="text"
+          formControlName="firstName"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          [class.border-red-500]="firstName?.invalid && firstName?.touched"
+        />
+        <p *ngIf="firstName?.invalid && firstName?.touched" class="mt-1 text-sm text-red-600">
+          Le prénom est requis
+        </p>
+      </div>
+
+      <!-- Last Name -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          Nom <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="text"
+          formControlName="lastName"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          [class.border-red-500]="lastName?.invalid && lastName?.touched"
+        />
+        <p *ngIf="lastName?.invalid && lastName?.touched" class="mt-1 text-sm text-red-600">
+          Le nom est requis
+        </p>
+      </div>
+
+      <!-- Phone Number -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          Numéro de téléphone
+        </label>
+        <input
+          type="tel"
+          formControlName="phoneNumber"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
+      </div>
+
+      <!-- Roles -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          Rôles <span class="text-red-500">*</span>
+        </label>
+        <div class="space-y-2">
+          <div *ngFor="let role of roles" class="flex items-center">
+            <input
+              type="checkbox"
+              [id]="'role-' + role.id"
+              [checked]="isRoleSelected(role.id)"
+              (change)="onRoleChange(role.id, $event)"
+              class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            />
+            <label [for]="'role-' + role.id" class="ml-3 block text-sm text-gray-700">
+              {{ role.name }}
+              <span *ngIf="role.description" class="text-gray-500">- {{ role.description }}</span>
+            </label>
+          </div>
+        </div>
+        <p *ngIf="userForm.get('roleIds')?.invalid && userForm.get('roleIds')?.touched" class="mt-1 text-sm text-red-600">
+          Veuillez sélectionner au moins un rôle
+        </p>
+      </div>
+
+      <!-- Is Active (Edit only) -->
+      <div *ngIf="isEditMode" class="mb-6">
+        <label class="flex items-center">
+          <input
+            type="checkbox"
+            formControlName="isActive"
+            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+          />
+          <span class="ml-3 block text-sm text-gray-700">
+            Compte actif
+          </span>
+        </label>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex justify-end gap-4">
+        <button
+          type="button"
+          (click)="cancel()"
+          class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition"
+          [disabled]="loading"
+        >
+          Annuler
+        </button>
+        <button
+          type="submit"
+          class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          [disabled]="loading || userForm.invalid"
+        >
+          <span *ngIf="loading">Enregistrement...</span>
+          <span *ngIf="!loading">{{ isEditMode ? 'Mettre à jour' : 'Créer' }}</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BrigadeMedicale.Patient.Mobile.MainPage"
+             Title="Brigade Médicale - Patient"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="0" Margin="0">
+
+        <!-- Hero Header (Teal Background) -->
+        <Grid Grid.Row="0" RowDefinitions="Auto" ColumnDefinitions="*" BackgroundColor="{StaticResource Primary}" Padding="0">
+            <VerticalStackLayout Padding="24,40,24,32" Spacing="16" HorizontalOptions="Fill">
+
+                <!-- Logo Circle -->
+                <Frame
+                    WidthRequest="70"
+                    HeightRequest="70"
+                    CornerRadius="35"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+                    HorizontalOptions="Center"
+                    Padding="0"
+                    HasShadow="False">
+                    <Label
+                        Text="BM"
+                        TextColor="{StaticResource Primary}"
+                        FontSize="26"
+                        FontFamily="OpenSansSemibold"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        HorizontalTextAlignment="Center" />
+                </Frame>
+
+                <!-- Title -->
+                <Label
+                    Text="Brigade Médicale"
+                    FontSize="26"
+                    FontFamily="OpenSansSemibold"
+                    TextColor="{StaticResource White}"
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="Fill" />
+
+                <!-- Subtitle -->
+                <Label
+                    Text="Votre santé, notre mission"
+                    FontSize="14"
+                    TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"
+                    Opacity="0.9"
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="Fill" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- Main Content -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Start">
+
+                <!-- Intro Text -->
+                <VerticalStackLayout Spacing="8">
+                    <Label
+                        Text="Pourquoi s'inscrire ?"
+                        FontSize="16"
+                        FontFamily="OpenSansSemibold"
+                        TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryLight}}" />
+
+                    <Label
+                        Text="Accédez facilement à votre dossier médical, consultations et résultats de tests."
+                        FontSize="13"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"
+                        LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
+
+                <!-- Feature Cards Grid -->
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="12">
+
+                    <!-- Card 1: Dossier Médical -->
+                    <Frame Grid.Row="0" Grid.Column="0" Style="{StaticResource CardStyle}">
+                        <VerticalStackLayout Spacing="8" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <Label Text="📋" FontSize="32" HorizontalOptions="Center" />
+                            <Label
+                                Text="Dossier"
+                                FontSize="13"
+                                FontFamily="OpenSansSemibold"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center" />
+                            <Label
+                                Text="Accès complet"
+                                FontSize="11"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Card 2: Sécurité -->
+                    <Frame Grid.Row="0" Grid.Column="1" Style="{StaticResource CardStyle}">
+                        <VerticalStackLayout Spacing="8" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <Label Text="🔒" FontSize="32" HorizontalOptions="Center" />
+                            <Label
+                                Text="Sécurisé"
+                                FontSize="13"
+                                FontFamily="OpenSansSemibold"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center" />
+                            <Label
+                                Text="Chiffré"
+                                FontSize="11"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Card 3: Accès 24/7 -->
+                    <Frame Grid.Row="1" Grid.Column="0" Style="{StaticResource CardStyle}">
+                        <VerticalStackLayout Spacing="8" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <Label Text="⏰" FontSize="32" HorizontalOptions="Center" />
+                            <Label
+                                Text="Accès"
+                                FontSize="13"
+                                FontFamily="OpenSansSemibold"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center" />
+                            <Label
+                                Text="24/7"
+                                FontSize="11"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Card 4: Suivi -->
+                    <Frame Grid.Row="1" Grid.Column="1" Style="{StaticResource CardStyle}">
+                        <VerticalStackLayout Spacing="8" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <Label Text="📊" FontSize="32" HorizontalOptions="Center" />
+                            <Label
+                                Text="Suivi"
+                                FontSize="13"
+                                FontFamily="OpenSansSemibold"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center" />
+                            <Label
+                                Text="Continu"
+                                FontSize="11"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                </Grid>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Action Buttons Footer -->
+        <VerticalStackLayout
+            Grid.Row="2"
+            Padding="20,12,20,24"
+            Spacing="12"
+            BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
+
+            <Button
+                x:Name="LoginBtn"
+                Text="Me connecter"
+                Style="{StaticResource PrimaryButton}"
+                Clicked="OnLoginClicked" />
+
+            <Button
+                x:Name="RegisterBtn"
+                Text="Créer un compte"
+                Style="{StaticResource SecondaryButton}"
+                Clicked="OnRegisterClicked" />
+
+        </VerticalStackLayout>
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BrigadeMedicale.Patient.Mobile.Features.Triage.Pages.TriagePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:BrigadeMedicale.Patient.Mobile.Features.Triage.ViewModels"
+    Title="Prise de Constantes"
+    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1a1a1a}"
+    Padding="16">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="16">
+            <!-- Header -->
+            <VerticalStackLayout Spacing="8">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    Text="Prise de Constantes"
+                    TextColor="{AppThemeBinding Light=#212121, Dark=#FFFFFF}" />
+                <Label
+                    x:Name="PatientNameLabel"
+                    FontSize="14"
+                    Text="Patient: -"
+                    TextColor="{AppThemeBinding Light=#666666, Dark=#CCCCCC}" />
+            </VerticalStackLayout>
+
+            <!-- Offline Badge -->
+            <Frame
+                x:Name="OfflineFrame"
+                BorderColor="#FF9800"
+                CornerRadius="8"
+                HasShadow="False"
+                IsVisible="{Binding IsOfflineMode}"
+                Padding="12"
+                BorderWidth="1">
+                <VerticalStackLayout Spacing="4">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="12"
+                        Text="⚠️ Mode Hors Ligne"
+                        TextColor="#FF9800" />
+                    <Label
+                        FontSize="11"
+                        Text="Les données seront synchronisées à la reconnexion"
+                        TextColor="#FF9800" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Vital Signs Section -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="Constantes Vitales"
+                TextColor="{AppThemeBinding Light=#212121, Dark=#FFFFFF}" />
+
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="12" RowSpacing="12">
+                <!-- Temperature -->
+                <VerticalStackLayout Spacing="4">
+                    <Label FontSize="12" Text="Température (°C)" TextColor="{AppThemeBinding Light=#666666, Dark=#CCCCCC}" />
+                    <Entry
+                        x:Name="TemperatureEntry"
+                        Keyboard="Numeric"
+                        Placeholder="36.5"
+                        Text="{Binding Temperature}" />
+                </VerticalStackLayout>
+
+                <!-- Pulse -->
+                <VerticalStackLayout Grid.Column="1" Spacing="4">
+                    <Label FontSize="12" Text="Pouls (bpm)" TextColor="{AppThemeBinding Light=#666666, Dark=#CCCCCC}" />
+                    <Entry
+                        x:Name="PulseEntry"
+                        Keyboard="Numeric"
+                        Placeholder="72"
+                        Text="{Binding Pulse}" />
+                </VerticalStackLayout>
+
+                <!-- Systolic -->
+                <VerticalStackLayout Grid.Row="1" Spacing="4">
+                    <Label FontSize="12" Text="Systolique (mmHg)" TextColor="{AppThemeBinding Light=#666666, Dark=#CCCCCC}" />
+                    <Entry
+                        x:Name="SystolicEntry"
+                        Keyboard="Numeric"
+                        Placeholder="120"
+                        Text="{Binding Systolic}" />
+                </VerticalStackLayout>
+
+                <!-- Diastolic -->
+                <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="4">
+                    <Label FontSize="12" Text="Diastolique (mmHg)" TextColor="{AppThemeBinding Light=#666666, Dark=#CCCCCC}" />
+                    <Entry
+                        x:Name="DiastolicEntry"
+                        Keyboard="Numeric"
+                        Placeholder="80"
+                        Text="{Binding Diastolic}" />
+                </VerticalStackLayout>
+
+                <!-- Weight -->
+                <VerticalStackLayout Grid.Row="2" Spacing="4">
+                    <Label FontSize="12" Text="Poids (kg)" TextColor="{AppThemeBinding Light=#666666, Dark=#CCCCCC}" />
+                    <Entry
+                        x:Name="WeightEntry"
+                        Keyboard="Numeric"
+                        Placeholder="70"
+                        Text="{Binding Weight}" />
+                </VerticalStackLayout>
+
+                <!-- Height -->
+                <VerticalStackLayout Grid.Row="2" Grid.Column="1" Spacing="4">
+                    <Label FontSize="12" Text="Taille (cm)" TextColor="{AppThemeBinding Light#666666, Dark=#CCCCCC}" />
+                    <Entry
+                        x:Name="HeightEntry"
+                        Keyboard="Numeric"
+                        Placeholder="175"
+                        Text="{Binding Height}" />
+                </VerticalStackLayout>
+
+                <!-- SpO2 -->
+                <VerticalStackLayout Grid.Row="3" Spacing="4">
+                    <Label FontSize="12" Text="SpO2 (%)" TextColor="{AppThemeBinding Light=#666666, Dark=#CCCCCC}" />
+                    <Entry
+                        x:Name="SpO2Entry"
+                        Keyboard="Numeric"
+                        Placeholder="98"
+                        Text="{Binding SpO2}" />
+                </VerticalStackLayout>
+
+                <!-- IMC -->
+                <VerticalStackLayout Grid.Row="3" Grid.Column="1" Spacing="4">
+                    <Label FontSize="12" Text="IMC" TextColor="{AppThemeBinding Light=#666666, Dark=#CCCCCC}" />
+                    <Entry
+                        x:Name="IMCEntry"
+                        IsReadOnly="True"
+                        Text="{Binding IMC, StringFormat='{0:F1}'}" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- Complaint & Urgency Section -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="Informations"
+                TextColor="{AppThemeBinding Light=#212121, Dark=#FFFFFF}" />
+
+            <VerticalStackLayout Spacing="4">
+                <Label FontSize="12" Text="Motif de consultation" TextColor="{AppThemeBinding Light=#666666, Dark=#CCCCCC}" />
+                <Entry
+                    x:Name="ComplaintEntry"
+                    Keyboard="Text"
+                    Placeholder="Ex: Fièvre, mal de tête..."
+                    Text="{Binding Complaint}" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="4">
+                <Label FontSize="12" Text="Niveau d'urgence" TextColor="{AppThemeBinding Light=#666666, Dark=#CCCCCC}" />
+                <Picker
+                    x:Name="UrgencyLevelPicker"
+                    SelectedItem="{Binding UrgencyLevel}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type local:UrgencyLevel}">
+                            <local:UrgencyLevel>Green</local:UrgencyLevel>
+                            <local:UrgencyLevel>Yellow</local:UrgencyLevel>
+                            <local:UrgencyLevel>Red</local:UrgencyLevel>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="4">
+                <Label FontSize="12" Text="Notes supplémentaires" TextColor="{AppThemeBinding Light=#666666, Dark=#CCCCCC}" />
+                <Editor
+                    x:Name="NotesEditor"
+                    AutoSize="TextChanges"
+                    Keyboard="Text"
+                    Placeholder="Observations complémentaires..."
+                    Text="{Binding Notes}" />
+            </VerticalStackLayout>
+
+            <!-- Queue Status -->
+            <Frame
+                x:Name="QueueFrame"
+                BorderColor="#2196F3"
+                CornerRadius="8"
+                HasShadow="False"
+                IsVisible="{Binding QueueLength, Converter={StaticResource IntToBoolConverter}}"
+                Padding="12"
+                BorderWidth="1">
+                <VerticalStackLayout Spacing="8">
+                    <Label
+                        FontSize="12"
+                        Text="{Binding QueueLength, StringFormat='📋 {0} triage(s) en attente de synchronisation'}"
+                        TextColor="#2196F3" />
+                    <Button
+                        BackgroundColor="#2196F3"
+                        Command="{Binding SyncCommand}"
+                        CornerRadius="6"
+                        Text="Synchroniser maintenant"
+                        TextColor="White" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Draft Status -->
+            <Frame
+                x:Name="DraftFrame"
+                BorderColor="#4CAF50"
+                CornerRadius="8"
+                HasShadow="False"
+                IsVisible="{Binding HasDraft}"
+                Padding="12"
+                BorderWidth="1">
+                <VerticalStackLayout Spacing="8">
+                    <Label
+                        FontSize="12"
+                        Text="💾 Brouillon existant trouvé"
+                        TextColor="#4CAF50" />
+                    <Grid ColumnDefinitions="*, *" ColumnSpacing="8">
+                        <Button
+                            BackgroundColor="#4CAF50"
+                            Command="{Binding LoadDraftCommand}"
+                            CornerRadius="6"
+                            Text="Charger"
+                            TextColor="White" />
+                        <Button
+                            Grid.Column="1"
+                            BackgroundColor="#F44336"
+                            Command="{Binding ClearDraftCommand}"
+                            CornerRadius="6"
+                            Text="Supprimer"
+                            TextColor="White" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Action Buttons -->
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="8" RowSpacing="8">
+                <Button
+                    BackgroundColor="#4CAF50"
+                    Command="{Binding SaveDraftCommand}"
+                    CornerRadius="6"
+                    Text="💾 Enregistrer brouillon"
+                    TextColor="White" />
+                <Button
+                    Grid.Column="1"
+                    BackgroundColor="#2196F3"
+                    Command="{Binding SubmitCommand}"
+                    CornerRadius="6"
+                    IsEnabled="{Binding IsSubmitting, Converter={StaticResource InvertedBoolConverter}}"
+                    Text="✓ Valider Triage"
+                    TextColor="White" />
+            </Grid>
+
+            <!-- Spacer -->
+            <BoxView HeightRequest="20" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

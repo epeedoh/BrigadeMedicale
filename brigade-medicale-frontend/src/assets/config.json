@@ -1,0 +1,7 @@
+{
+  "production": false,
+  "apiUrl": "https://localhost:7288/api",
+  "tokenKey": "brigade_access_token",
+  "refreshTokenKey": "brigade_refresh_token",
+  "environment": "development"
+}

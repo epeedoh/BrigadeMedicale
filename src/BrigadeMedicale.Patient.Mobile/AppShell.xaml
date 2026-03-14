@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="BrigadeMedicale.Patient.Mobile.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:BrigadeMedicale.Patient.Mobile"
+    xmlns:auth="clr-namespace:BrigadeMedicale.Patient.Mobile.Features.Auth.Pages"
+    xmlns:onboarding="clr-namespace:BrigadeMedicale.Patient.Mobile.Features.Onboarding.Pages"
+    xmlns:triage="clr-namespace:BrigadeMedicale.Patient.Mobile.Features.Triage.Pages"
+    Title="Brigade Médicale">
+
+    <Shell.FlyoutBehavior>Disabled</Shell.FlyoutBehavior>
+    <Shell.BackgroundColor>{StaticResource Primary}</Shell.BackgroundColor>
+    <Shell.ForegroundColor>{StaticResource White}</Shell.ForegroundColor>
+    <Shell.TitleColor>{StaticResource White}</Shell.TitleColor>
+
+    <!-- Écran d'accueil -->
+    <ShellContent
+        Title="Accueil"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="main" />
+
+    <!-- Onboarding (inscription) -->
+    <ShellContent
+        Title="Inscription"
+        ContentTemplate="{DataTemplate onboarding:OnboardingPage}"
+        Route="onboarding" />
+
+    <!-- Succès (affichage QR et numéro) -->
+    <ShellContent
+        Title="Succès"
+        ContentTemplate="{DataTemplate onboarding:SuccessPage}"
+        Route="success" />
+
+    <!-- Login -->
+    <ShellContent
+        Title="Connexion"
+        ContentTemplate="{DataTemplate auth:LoginPage}"
+        Route="login" />
+
+    <!-- Triage Patient Dashboard -->
+    <ShellContent
+        Title="Triage Patient"
+        ContentTemplate="{DataTemplate triage:TriageDashboardPage}"
+        Route="triage" />
+
+    <!-- Carnet de santé (à implémenter en Phase 2) -->
+    <!-- Placeholder pour navigation future -->
+    <!-- <ShellContent
+        Title="Carnet de Santé"
+        Route="health-record" /> -->
+
+</Shell>

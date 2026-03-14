@@ -1,0 +1,103 @@
+[
+  {
+    "id": "medecin-001-protocols",
+    "role": "MEDECIN",
+    "title": "Protocoles Cliniques Essentiels",
+    "description": "Maîtrisez les protocoles cliniques standards pour les consultations et le traitement des patients.",
+    "shortDescription": "Protocoles et directives cliniques",
+    "durationMinutes": 50,
+    "level": "Intermédiaire",
+    "tags": ["protocoles", "clinique", "traitement"],
+    "imageUrl": null,
+    "createdAt": "2024-01-15T10:00:00Z",
+    "updatedAt": "2024-01-15T10:00:00Z",
+    "steps": [
+      {
+        "id": "medecin-001-step-1",
+        "title": "Structure de la consultation",
+        "content": "Étapes d'une consultation efficace:\n\n1. Anamnèse complète\n2. Examen physique systématique\n3. Diagnostic différentiel\n4. Plan de traitement\n5. Documentation complète\n\nSuivez toujours cette structure pour ne rien oublier.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "medecin-001-step-2",
+        "title": "Diagnostic et investigation",
+        "content": "Processus diagnostique:\n\n- Écouter attentivement le patient\n- Poser les bonnes questions\n- Effectuer un examen physique complet\n- Ordonner les investigations appropriées\n- Interpréter les résultats correctement\n- Envisager les diagnostics alternatifs\n\nLe diagnostic est la fondation du traitement efficace.",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "medecin-001-step-3",
+        "title": "Prescriptions et suivi",
+        "content": "Bonnes pratiques de prescription:\n\n- Prescrire le médicament approprié\n- Dosage correct et voie d'administration\n- Contre-indications vérifiées\n- Interactions médicamenteuses considérées\n- Instructions claires au patient\n- Suivi approprié planifié\n\nUne bonne prescription est sûre et efficace.",
+        "order": 3,
+        "media": []
+      }
+    ]
+  },
+  {
+    "id": "medecin-002-documentation",
+    "role": "MEDECIN",
+    "title": "Documentation Médicale Complète",
+    "description": "Apprenez à documenter correctement les consultations et les traitements des patients.",
+    "shortDescription": "Documentation médicale et dossiers",
+    "durationMinutes": 35,
+    "level": "Débutant",
+    "tags": ["documentation", "dossier", "notes"],
+    "imageUrl": null,
+    "createdAt": "2024-01-20T10:00:00Z",
+    "updatedAt": "2024-01-20T10:00:00Z",
+    "steps": [
+      {
+        "id": "medecin-002-step-1",
+        "title": "Éléments essentiels du dossier médical",
+        "content": "Contenus obligatoires d'un dossier médical:\n\n1. Antécédents du patient\n2. Motif de consultation\n3. Résultats de l'examen\n4. Diagnostic\n5. Plan de traitement\n6. Prescriptions\n7. Suivi prévu\n\nUn dossier complet protège le patient et le médecin.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "medecin-002-step-2",
+        "title": "Notation et objectivité",
+        "content": "Principes de bonne documentation:\n\n- Être précis et objectif\n- Utiliser la terminologie médicale appropriée\n- Noter les faits, pas les opinions\n- Documenter immédiatement après\n- Corriger les erreurs proprement\n- Signer et dater les notes\n\nLa documentation est un enregistrement légal du soin.",
+        "order": 2,
+        "media": []
+      }
+    ]
+  },
+  {
+    "id": "medecin-003-emergency",
+    "role": "MEDECIN",
+    "title": "Gestion des Cas d'Urgence",
+    "description": "Réponse appropriée aux situations d'urgence et stabilisation du patient.",
+    "shortDescription": "Médecine d'urgence et premiers soins",
+    "durationMinutes": 45,
+    "level": "Avancé",
+    "tags": ["urgence", "emergency", "stabilisation"],
+    "imageUrl": null,
+    "createdAt": "2024-01-25T10:00:00Z",
+    "updatedAt": "2024-01-25T10:00:00Z",
+    "steps": [
+      {
+        "id": "medecin-003-step-1",
+        "title": "Triage et classification",
+        "content": "Classification des urgences:\n\n1. Urgence immédiate (life-threatening)\n2. Urgence (sérieux, attendre < 1h)\n3. Semi-urgent (peut attendre 1-2h)\n4. Non-urgent (peut attendre > 2h)\n\nLe triage correct assure les ressources pour les cas graves.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "medecin-003-step-2",
+        "title": "ABCDE - Approche systématique",
+        "content": "Approche ABCDE pour les urgences:\n\nA - Airway (voies aériennes)\nB - Breathing (respiration)\nC - Circulation (circulation)\nD - Disability (déficit neurologique)\nE - Exposure (exposition/hypothermie)\n\nSuivez cet ordre pour ne rien oublier.",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "medecin-003-step-3",
+        "title": "Transfert et escalade",
+        "content": "Quand et comment transférer:\n\n- Reconnaître les limitations du centre\n- Décider rapidement du transfert\n- Stabiliser avant le transfert\n- Communiquer avec l'établissement récepteur\n- Accompagnement approprié\n- Documentation complète\n\nUn transfert en temps opportun peut sauver des vies.",
+        "order": 3,
+        "media": []
+      }
+    ]
+  }
+]

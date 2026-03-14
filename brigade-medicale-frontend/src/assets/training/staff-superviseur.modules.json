@@ -1,0 +1,110 @@
+[
+  {
+    "id": "superviseur-001-leadership",
+    "role": "SUPERVISEUR",
+    "title": "Leadership et Gestion d'Équipe",
+    "description": "Développer les compétences de leadership pour superviser efficacement une équipe multidisciplinaire.",
+    "shortDescription": "Leadership et gestion d'équipe",
+    "durationMinutes": 50,
+    "level": "Avancé",
+    "tags": ["leadership", "management", "équipe"],
+    "imageUrl": null,
+    "createdAt": "2024-01-15T10:00:00Z",
+    "updatedAt": "2024-01-15T10:00:00Z",
+    "steps": [
+      {
+        "id": "superviseur-001-step-1",
+        "title": "Styles de leadership",
+        "content": "Différents styles de leadership:\n\n1. Autoritaire - Direction claire\n2. Démocratique - Participation d'équipe\n3. Délégatif - Confiance aux membres\n4. Transformationnel - Inspiration\n5. Servant - Service à l'équipe\n\nUn bon leader adapte son style à la situation.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "superviseur-001-step-2",
+        "title": "Motivation et développement",
+        "content": "Techniques de motivation:\n\n- Reconnaissance du bon travail\n- Opportunités de développement\n- Communication ouverte\n- Feedback constructif\n- Fixation d'objectifs clairs\n- Autonomie appropriée\n\nUne équipe motivée produit mieux.",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "superviseur-001-step-3",
+        "title": "Résolution de conflits",
+        "content": "Gestion des conflits d'équipe:\n\n1. Reconnaître le conflit tôt\n2. Écouter tous les points de vue\n3. Identifier les intérêts communs\n4. Générer des solutions\n5. Négocier un accord\n6. Suivre la résolution\n\nLes conflits résolus renforcent l'équipe.",
+        "order": 3,
+        "media": []
+      }
+    ]
+  },
+  {
+    "id": "superviseur-002-quality",
+    "role": "SUPERVISEUR",
+    "title": "Assurance Qualité et Amélioration Continue",
+    "description": "Mettre en place et maintenir des standards de qualité élevés dans les services.",
+    "shortDescription": "Qualité et amélioration",
+    "durationMinutes": 45,
+    "level": "Avancé",
+    "tags": ["qualité", "amélioration", "standards"],
+    "imageUrl": null,
+    "createdAt": "2024-01-20T10:00:00Z",
+    "updatedAt": "2024-01-20T10:00:00Z",
+    "steps": [
+      {
+        "id": "superviseur-002-step-1",
+        "title": "Normes de qualité",
+        "content": "Établir les normes:\n\n1. Normes de processus\n2. Normes de résultats\n3. Expérience patient\n4. Sécurité du patient\n5. Conformité réglementaire\n6. Standards éthiques\n\nLes normes claires guident l'équipe.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "superviseur-002-step-2",
+        "title": "Mesure et suivi",
+        "content": "Métriques de qualité:\n\n- Indicateurs de performance clés (KPI)\n- Mesure régulière des résultats\n- Comparaison avec les normes\n- Tendances identifiées\n- Rapports aux parties prenantes\n\nCe qui se mesure s'améliore.",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "superviseur-002-step-3",
+        "title": "Cycle d'amélioration continue",
+        "content": "Cycle PDCA:\n\nPlan - Planifier l'amélioration\nDo - Exécuter le changement\nCheck - Vérifier les résultats\nAct - Agir sur les apprentissages\n\nLa boucle continue élève les standards.",
+        "order": 3,
+        "media": []
+      }
+    ]
+  },
+  {
+    "id": "superviseur-003-ethics",
+    "role": "SUPERVISEUR",
+    "title": "Éthique Médicale et Responsabilités",
+    "description": "Maintenir les standards éthiques et les responsabilités de gouvernance.",
+    "shortDescription": "Éthique et gouvernance",
+    "durationMinutes": 40,
+    "level": "Avancé",
+    "tags": ["éthique", "gouvernance", "responsabilité"],
+    "imageUrl": null,
+    "createdAt": "2024-01-25T10:00:00Z",
+    "updatedAt": "2024-01-25T10:00:00Z",
+    "steps": [
+      {
+        "id": "superviseur-003-step-1",
+        "title": "Principes éthiques fondamentaux",
+        "content": "Les 4 principes éthiques:\n\n1. Autonomie - Respect des choix du patient\n2. Bienveillance - Agir pour le bien\n3. Non-malveillance - Éviter le mal\n4. Justice - Traitement équitable\n\nCes principes guident les décisions difficiles.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "superviseur-003-step-2",
+        "title": "Consentement éclairé",
+        "content": "Processus de consentement:\n\n1. Divulgation d'informations\n2. Compréhension du patient\n3. Volontarisme sans coercition\n4. Capacité mentale du patient\n5. Documentation du consentement\n\nLe consentement éclairé est un droit patient.",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "superviseur-003-step-3",
+        "title": "Dilemmes éthiques courants",
+        "content": "Situations difficiles:\n\n- Allocation de ressources limitées\n- Fin de vie et DPIA\n- Confidentialité vs sécurité\n- Refus de traitement\n- Conflits d'intérêts\n\nFace aux dilemmes, consultez et documentez.",
+        "order": 3,
+        "media": []
+      }
+    ]
+  }
+]

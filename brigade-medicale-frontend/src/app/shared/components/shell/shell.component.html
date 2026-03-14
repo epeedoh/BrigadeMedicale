@@ -1,0 +1,159 @@
+<div class="app-background min-h-screen flex">
+  <!-- Sidebar -->
+  <aside
+    [class.w-72]="sidebarOpen"
+    [class.w-20]="!sidebarOpen"
+    class="sidebar fixed left-0 top-0 h-full z-30 transition-all duration-300"
+  >
+    <!-- Logo Section -->
+    <div class="sidebar-header">
+      <div class="sidebar-logo" [class.justify-center]="!sidebarOpen">
+        <div class="sidebar-logo-icon">
+          <svg fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+          </svg>
+        </div>
+        <div *ngIf="sidebarOpen" class="sidebar-logo-text">
+          <h1>Brigade</h1>
+          <span>Médicale</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+      <div *ngIf="sidebarOpen" class="sidebar-section-title">
+        Navigation
+      </div>
+
+      <a
+        *ngFor="let item of visibleMenuItems"
+        [routerLink]="item.route"
+        routerLinkActive="active"
+        class="sidebar-item"
+        [class.justify-center]="!sidebarOpen"
+        [title]="item.label"
+      >
+        <!-- Dashboard Icon -->
+        <svg *ngIf="item.route === '/dashboard'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+        </svg>
+        <!-- Patients Icon -->
+        <svg *ngIf="item.route === '/patients'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+        </svg>
+        <!-- Consultations Icon -->
+        <svg *ngIf="item.route === '/consultations'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+        </svg>
+        <!-- Pharmacy Icon -->
+        <svg *ngIf="item.route === '/pharmacy'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+        </svg>
+        <!-- Laboratory Icon -->
+        <svg *ngIf="item.route === '/lab-tests'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+        </svg>
+        <!-- Users Icon -->
+        <svg *ngIf="item.route === '/users'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        <span *ngIf="sidebarOpen">{{ item.label }}</span>
+      </a>
+    </nav>
+
+    <!-- User Profile in Sidebar -->
+    <div class="p-4 border-t border-gray-100" *ngIf="currentUser">
+      <div class="flex items-center gap-3" [class.justify-center]="!sidebarOpen">
+        <div class="header-avatar">
+          {{ userInitials }}
+        </div>
+        <div *ngIf="sidebarOpen" class="overflow-hidden">
+          <p class="text-sm font-semibold text-gray-800 truncate">{{ currentUser.firstName }} {{ currentUser.lastName }}</p>
+          <p class="text-xs text-gray-500 truncate">{{ userRoles }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toggle Button -->
+    <button
+      (click)="toggleSidebar()"
+      class="p-4 border-t border-gray-100 hover:bg-gray-50 transition-colors flex items-center gap-2"
+      [class.justify-center]="!sidebarOpen"
+    >
+      <svg class="w-5 h-5 text-gray-400 transition-transform" [class.rotate-180]="!sidebarOpen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/>
+      </svg>
+      <span *ngIf="sidebarOpen" class="text-sm text-gray-500">Réduire</span>
+    </button>
+  </aside>
+
+  <!-- Main Content Area -->
+  <div class="flex-1 flex flex-col transition-all duration-300"
+       [class.ml-72]="sidebarOpen"
+       [class.ml-20]="!sidebarOpen">
+    <!-- Header -->
+    <header class="header-medical">
+      <div class="header-content">
+        <div class="header-title">
+          <h1>Brigade Médicale</h1>
+          <p>Système de gestion médical</p>
+        </div>
+
+        <div class="header-actions">
+          <!-- Notifications -->
+          <button class="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors text-white" title="Notifications">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+            </svg>
+          </button>
+
+          <!-- User Info -->
+          <div class="header-user">
+            <div class="header-user-info" *ngIf="currentUser">
+              <p class="header-user-name">{{ currentUser.firstName }} {{ currentUser.lastName }}</p>
+              <p class="header-user-role">{{ userRoles }}</p>
+            </div>
+
+            <div class="header-avatar">
+              {{ userInitials }}
+            </div>
+
+            <button
+              (click)="logout()"
+              class="btn btn-sm bg-white/10 hover:bg-white/20 text-white border-0"
+              title="Déconnexion"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+              </svg>
+              <span class="hidden sm:inline">Déconnexion</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content with proper background -->
+    <main class="flex-1 overflow-y-auto">
+      <div class="page-container">
+        <div class="content-wrapper animate-fade-in">
+          <router-outlet />
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white/80 backdrop-blur-sm border-t border-gray-100 px-6 py-3 z-10">
+      <div class="content-wrapper">
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-2 text-sm text-gray-500">
+          <p>© 2026 Brigade Médicale - Système de gestion médical</p>
+          <p class="flex items-center gap-2">
+            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+            Système opérationnel
+          </p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>

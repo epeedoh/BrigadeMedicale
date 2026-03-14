@@ -1,0 +1,30 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BrigadeMedicale.Patient.Mobile"
+             xmlns:converters="clr-namespace:BrigadeMedicale.Patient.Mobile.Core.Converters"
+             xmlns:triageConverters="clr-namespace:BrigadeMedicale.Patient.Mobile.Features.Triage.Converters"
+             x:Class="BrigadeMedicale.Patient.Mobile.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Convertisseurs de valeurs -->
+            <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+            <converters:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
+            <converters:ProgressConverter x:Key="ProgressConverter" />
+            <converters:StepConverter x:Key="StepConverter" />
+
+            <!-- Convertisseurs Triage -->
+            <triageConverters:UrgencyLevelColorConverter x:Key="UrgencyLevelColorConverter" />
+            <triageConverters:UrgencyLevelLabelConverter x:Key="UrgencyLevelLabelConverter" />
+            <triageConverters:StatusBadgeConverter x:Key="StatusBadgeConverter" />
+            <triageConverters:StatusColorConverter x:Key="StatusColorConverter" />
+            <triageConverters:VitalSignsConverter x:Key="VitalSignsConverter" />
+            <triageConverters:IntToBoolConverter x:Key="IntToBoolConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
