@@ -47,21 +47,22 @@ public class ApplicationDbContext : DbContext
             entity.HasIndex(e => e.Email).IsUnique();
 
             // Seed test user: admin / admin123
+            // DISABLED: Seed data causes migration errors with PostgreSQL
             // Password hash generated with BCrypt for "admin123"
-            var adminUserId = new Guid("00000000-0000-0000-0000-000000000001");
-            entity.HasData(
-                new User
-                {
-                    Id = adminUserId,
-                    Username = "admin",
-                    Email = "admin@brigade.com",
-                    PasswordHash = "$2a$11$fXEIORWwGNdft//xGOI4melViISH3./sbEi2I5fVD/LX0HtBdtq8C", // admin123
-                    FirstName = "Admin",
-                    LastName = "Système",
-                    IsActive = true,
-                    CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc)
-                }
-            );
+            //var adminUserId = new Guid("00000000-0000-0000-0000-000000000001");
+            //entity.HasData(
+            //    new User
+            //    {
+            //        Id = adminUserId,
+            //        Username = "admin",
+            //        Email = "admin@brigade.com",
+            //        PasswordHash = "$2a$11$fXEIORWwGNdft//xGOI4melViISH3./sbEi2I5fVD/LX0HtBdtq8C", // admin123
+            //        FirstName = "Admin",
+            //        LastName = "Système",
+            //        IsActive = true,
+            //        CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+            //    }
+            //);
         });
 
         // Role configuration
@@ -73,15 +74,16 @@ public class ApplicationDbContext : DbContext
             entity.HasIndex(e => e.Name).IsUnique();
 
             // Seed roles
-            entity.HasData(
-                new Role { Id = 1, Name = "ADMIN", Description = "Administrateur système" },
-                new Role { Id = 2, Name = "ACCUEIL", Description = "Agent d'accueil" },
-                new Role { Id = 3, Name = "INFIRMIER", Description = "Infirmier" },
-                new Role { Id = 4, Name = "MEDECIN", Description = "Médecin" },
-                new Role { Id = 5, Name = "LABORANTIN", Description = "Technicien de laboratoire" },
-                new Role { Id = 6, Name = "PHARMACIEN", Description = "Pharmacien" },
-                new Role { Id = 7, Name = "SUPERVISEUR", Description = "Superviseur" }
-            );
+            // DISABLED: Seed data causes migration errors with PostgreSQL
+            //entity.HasData(
+            //    new Role { Id = 1, Name = "ADMIN", Description = "Administrateur système" },
+            //    new Role { Id = 2, Name = "ACCUEIL", Description = "Agent d'accueil" },
+            //    new Role { Id = 3, Name = "INFIRMIER", Description = "Infirmier" },
+            //    new Role { Id = 4, Name = "MEDECIN", Description = "Médecin" },
+            //    new Role { Id = 5, Name = "LABORANTIN", Description = "Technicien de laboratoire" },
+            //    new Role { Id = 6, Name = "PHARMACIEN", Description = "Pharmacien" },
+            //    new Role { Id = 7, Name = "SUPERVISEUR", Description = "Superviseur" }
+            //);
         });
 
         // UserRole configuration
@@ -99,18 +101,19 @@ public class ApplicationDbContext : DbContext
                 .HasForeignKey(e => e.RoleId);
 
             // Seed UserRole: admin user has ADMIN and INFIRMIER roles
-            entity.HasData(
-                new UserRole
-                {
-                    UserId = new Guid("00000000-0000-0000-0000-000000000001"),
-                    RoleId = 1  // ADMIN role
-                },
-                new UserRole
-                {
-                    UserId = new Guid("00000000-0000-0000-0000-000000000001"),
-                    RoleId = 3  // INFIRMIER role
-                }
-            );
+            // DISABLED: Seed data causes migration errors with PostgreSQL
+            //entity.HasData(
+            //    new UserRole
+            //    {
+            //        UserId = new Guid("00000000-0000-0000-0000-000000000001"),
+            //        RoleId = 1  // ADMIN role
+            //    },
+            //    new UserRole
+            //    {
+            //        UserId = new Guid("00000000-0000-0000-0000-000000000001"),
+            //        RoleId = 3  // INFIRMIER role
+            //    }
+            //);
         });
 
         // Patient configuration
