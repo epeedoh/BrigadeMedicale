@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
 namespace BrigadeMedicale.Infrastructure.Migrations
 {
     /// <inheritdoc />
@@ -51,6 +49,9 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                     BloodType = table.Column<string>(type: "TEXT", nullable: true),
                     Allergies = table.Column<string>(type: "TEXT", nullable: true),
                     ChronicDiseases = table.Column<string>(type: "TEXT", nullable: true),
+                    Sector = table.Column<string>(type: "TEXT", nullable: true),
+                    IsFromChurch = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ChurchSector = table.Column<string>(type: "TEXT", nullable: true),
                     RegistrationSource = table.Column<string>(type: "TEXT", nullable: false),
                     IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
                     CreatedBy = table.Column<Guid>(type: "TEXT", nullable: true),
@@ -75,6 +76,29 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Roles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TrainingModules",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    TrainingId = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    Title = table.Column<string>(type: "TEXT", maxLength: 200, nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: false),
+                    ShortDescription = table.Column<string>(type: "TEXT", maxLength: 500, nullable: false),
+                    DurationMinutes = table.Column<int>(type: "INTEGER", nullable: false),
+                    Level = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    Tags = table.Column<string>(type: "TEXT", maxLength: 500, nullable: false),
+                    ImageUrl = table.Column<string>(type: "TEXT", nullable: true),
+                    Audience = table.Column<int>(type: "INTEGER", nullable: false),
+                    Order = table.Column<int>(type: "INTEGER", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TrainingModules", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -124,40 +148,53 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Consultations",
+                name: "TrainingQuizzes",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    PatientId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    DoctorId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    ChiefComplaint = table.Column<string>(type: "TEXT", nullable: false),
-                    History = table.Column<string>(type: "TEXT", nullable: true),
-                    PhysicalExam = table.Column<string>(type: "TEXT", nullable: true),
-                    VitalSigns = table.Column<string>(type: "TEXT", nullable: true),
-                    Diagnosis = table.Column<string>(type: "TEXT", nullable: true),
-                    Treatment = table.Column<string>(type: "TEXT", nullable: true),
-                    Notes = table.Column<string>(type: "TEXT", nullable: true),
-                    Status = table.Column<int>(type: "INTEGER", nullable: false),
-                    ConsultationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ClosedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    QuizId = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    TrainingModuleId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Question = table.Column<string>(type: "TEXT", nullable: false),
+                    Options = table.Column<string>(type: "TEXT", nullable: false),
+                    AnswerIndex = table.Column<int>(type: "INTEGER", nullable: false),
+                    Order = table.Column<int>(type: "INTEGER", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Consultations", x => x.Id);
+                    table.PrimaryKey("PK_TrainingQuizzes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Consultations_Patients_PatientId",
-                        column: x => x.PatientId,
-                        principalTable: "Patients",
+                        name: "FK_TrainingQuizzes_TrainingModules_TrainingModuleId",
+                        column: x => x.TrainingModuleId,
+                        principalTable: "TrainingModules",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TrainingSteps",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    StepId = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    TrainingModuleId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Title = table.Column<string>(type: "TEXT", maxLength: 200, nullable: false),
+                    Content = table.Column<string>(type: "TEXT", nullable: false),
+                    Order = table.Column<int>(type: "INTEGER", nullable: false),
+                    Media = table.Column<string>(type: "TEXT", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TrainingSteps", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Consultations_Users_DoctorId",
-                        column: x => x.DoctorId,
-                        principalTable: "Users",
+                        name: "FK_TrainingSteps_TrainingModules_TrainingModuleId",
+                        column: x => x.TrainingModuleId,
+                        principalTable: "TrainingModules",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -219,6 +256,80 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TrainingProgress",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    UserId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    TrainingModuleId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Status = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    StartedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    CompletedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    QuizScore = table.Column<int>(type: "INTEGER", nullable: true),
+                    CompletedSteps = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "[]"),
+                    CurrentStepIndex = table.Column<int>(type: "INTEGER", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TrainingProgress", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TrainingProgress_TrainingModules_TrainingModuleId",
+                        column: x => x.TrainingModuleId,
+                        principalTable: "TrainingModules",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TrainingProgress_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TriageRecords",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    PatientId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    InfirmierId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Temperature = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Pulse = table.Column<int>(type: "INTEGER", nullable: false),
+                    SystolicBP = table.Column<int>(type: "INTEGER", nullable: false),
+                    DiastolicBP = table.Column<int>(type: "INTEGER", nullable: false),
+                    Weight = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Height = table.Column<decimal>(type: "TEXT", nullable: false),
+                    SpO2 = table.Column<int>(type: "INTEGER", nullable: true),
+                    RespiratoryRate = table.Column<int>(type: "INTEGER", nullable: true),
+                    Complaint = table.Column<string>(type: "TEXT", nullable: false),
+                    UrgencyLevel = table.Column<int>(type: "INTEGER", nullable: false),
+                    Notes = table.Column<string>(type: "TEXT", nullable: true),
+                    Status = table.Column<int>(type: "INTEGER", nullable: false),
+                    RecordedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ConsultationId = table.Column<Guid>(type: "TEXT", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TriageRecords", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TriageRecords_Patients_PatientId",
+                        column: x => x.PatientId,
+                        principalTable: "Patients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_TriageRecords_Users_InfirmierId",
+                        column: x => x.InfirmierId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserRoles",
                 columns: table => new
                 {
@@ -240,6 +351,50 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Consultations",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    PatientId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    DoctorId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    ChiefComplaint = table.Column<string>(type: "TEXT", nullable: false),
+                    History = table.Column<string>(type: "TEXT", nullable: true),
+                    PhysicalExam = table.Column<string>(type: "TEXT", nullable: true),
+                    VitalSigns = table.Column<string>(type: "TEXT", nullable: true),
+                    Diagnosis = table.Column<string>(type: "TEXT", nullable: true),
+                    Treatment = table.Column<string>(type: "TEXT", nullable: true),
+                    Notes = table.Column<string>(type: "TEXT", nullable: true),
+                    Status = table.Column<int>(type: "INTEGER", nullable: false),
+                    ConsultationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ClosedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    TriageRecordId = table.Column<Guid>(type: "TEXT", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Consultations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Consultations_Patients_PatientId",
+                        column: x => x.PatientId,
+                        principalTable: "Patients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Consultations_TriageRecords_TriageRecordId",
+                        column: x => x.TriageRecordId,
+                        principalTable: "TriageRecords",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
+                    table.ForeignKey(
+                        name: "FK_Consultations_Users_DoctorId",
+                        column: x => x.DoctorId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -302,29 +457,6 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Roles",
-                columns: new[] { "Id", "Description", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Administrateur système", "ADMIN" },
-                    { 2, "Agent d'accueil", "ACCUEIL" },
-                    { 3, "Médecin", "MEDECIN" },
-                    { 4, "Technicien de laboratoire", "LABORANTIN" },
-                    { 5, "Pharmacien", "PHARMACIEN" },
-                    { 6, "Superviseur", "SUPERVISEUR" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "CreatedAt", "Email", "FirstName", "IsActive", "LastLoginAt", "LastName", "PasswordHash", "PhoneNumber", "UpdatedAt", "Username" },
-                values: new object[] { new Guid("00000000-0000-0000-0000-000000000001"), new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "admin@brigade.com", "Admin", true, null, "Système", "$2a$11$fXEIORWwGNdft//xGOI4melViISH3./sbEi2I5fVD/LX0HtBdtq8C", null, null, "admin" });
-
-            migrationBuilder.InsertData(
-                table: "UserRoles",
-                columns: new[] { "RoleId", "UserId" },
-                values: new object[] { 1, new Guid("00000000-0000-0000-0000-000000000001") });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Consultations_ConsultationDate",
                 table: "Consultations",
@@ -339,6 +471,12 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                 name: "IX_Consultations_PatientId",
                 table: "Consultations",
                 column: "PatientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Consultations_TriageRecordId",
+                table: "Consultations",
+                column: "TriageRecordId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_LabTestRequests_ConsultationId",
@@ -427,6 +565,73 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TrainingModules_Audience",
+                table: "TrainingModules",
+                column: "Audience");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TrainingModules_TrainingId",
+                table: "TrainingModules",
+                column: "TrainingId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TrainingProgress_Status",
+                table: "TrainingProgress",
+                column: "Status");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TrainingProgress_TrainingModuleId",
+                table: "TrainingProgress",
+                column: "TrainingModuleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TrainingProgress_UserId_TrainingModuleId",
+                table: "TrainingProgress",
+                columns: new[] { "UserId", "TrainingModuleId" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TrainingQuizzes_Order",
+                table: "TrainingQuizzes",
+                column: "Order");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TrainingQuizzes_TrainingModuleId",
+                table: "TrainingQuizzes",
+                column: "TrainingModuleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TrainingSteps_Order",
+                table: "TrainingSteps",
+                column: "Order");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TrainingSteps_TrainingModuleId",
+                table: "TrainingSteps",
+                column: "TrainingModuleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TriageRecords_InfirmierId",
+                table: "TriageRecords",
+                column: "InfirmierId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TriageRecords_PatientId",
+                table: "TriageRecords",
+                column: "PatientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TriageRecords_RecordedAt",
+                table: "TriageRecords",
+                column: "RecordedAt");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TriageRecords_Status",
+                table: "TriageRecords",
+                column: "Status");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserRoles_RoleId",
                 table: "UserRoles",
                 column: "RoleId");
@@ -463,6 +668,15 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                 name: "StockMovements");
 
             migrationBuilder.DropTable(
+                name: "TrainingProgress");
+
+            migrationBuilder.DropTable(
+                name: "TrainingQuizzes");
+
+            migrationBuilder.DropTable(
+                name: "TrainingSteps");
+
+            migrationBuilder.DropTable(
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
@@ -472,7 +686,13 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                 name: "Medications");
 
             migrationBuilder.DropTable(
+                name: "TrainingModules");
+
+            migrationBuilder.DropTable(
                 name: "Roles");
+
+            migrationBuilder.DropTable(
+                name: "TriageRecords");
 
             migrationBuilder.DropTable(
                 name: "Patients");

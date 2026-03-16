@@ -11,14 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BrigadeMedicale.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260128224953_AddPatientSectorFields")]
-    partial class AddPatientSectorFields
+    [Migration("20260316132457_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "10.0.2");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
 
             modelBuilder.Entity("BrigadeMedicale.Domain.Entities.Consultation", b =>
                 {
@@ -63,6 +63,9 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                     b.Property<string>("Treatment")
                         .HasColumnType("TEXT");
 
+                    b.Property<Guid?>("TriageRecordId")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("TEXT");
 
@@ -76,6 +79,9 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                     b.HasIndex("DoctorId");
 
                     b.HasIndex("PatientId");
+
+                    b.HasIndex("TriageRecordId")
+                        .IsUnique();
 
                     b.ToTable("Consultations", (string)null);
                 });
@@ -413,44 +419,6 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Roles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Administrateur système",
-                            Name = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Agent d'accueil",
-                            Name = "ACCUEIL"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Médecin",
-                            Name = "MEDECIN"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Description = "Technicien de laboratoire",
-                            Name = "LABORANTIN"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Description = "Pharmacien",
-                            Name = "PHARMACIEN"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Description = "Superviseur",
-                            Name = "SUPERVISEUR"
-                        });
                 });
 
             modelBuilder.Entity("BrigadeMedicale.Domain.Entities.StockMovement", b =>
@@ -498,6 +466,284 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("StockMovements", (string)null);
+                });
+
+            modelBuilder.Entity("BrigadeMedicale.Domain.Entities.TrainingModule", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Audience")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("DurationMinutes")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Level")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ShortDescription")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Tags")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TrainingId")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Audience");
+
+                    b.HasIndex("TrainingId")
+                        .IsUnique();
+
+                    b.ToTable("TrainingModules", (string)null);
+                });
+
+            modelBuilder.Entity("BrigadeMedicale.Domain.Entities.TrainingProgress", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("CompletedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CompletedSteps")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue("[]");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("CurrentStepIndex")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("QuizScore")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("StartedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("TrainingModuleId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Status");
+
+                    b.HasIndex("TrainingModuleId");
+
+                    b.HasIndex("UserId", "TrainingModuleId")
+                        .IsUnique();
+
+                    b.ToTable("TrainingProgress", (string)null);
+                });
+
+            modelBuilder.Entity("BrigadeMedicale.Domain.Entities.TrainingQuiz", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("AnswerIndex")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Options")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Question")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("QuizId")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("TrainingModuleId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Order");
+
+                    b.HasIndex("TrainingModuleId");
+
+                    b.ToTable("TrainingQuizzes", (string)null);
+                });
+
+            modelBuilder.Entity("BrigadeMedicale.Domain.Entities.TrainingStep", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Media")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("StepId")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("TrainingModuleId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Order");
+
+                    b.HasIndex("TrainingModuleId");
+
+                    b.ToTable("TrainingSteps", (string)null);
+                });
+
+            modelBuilder.Entity("BrigadeMedicale.Domain.Entities.TriageRecord", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Complaint")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("ConsultationId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("DiastolicBP")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Height")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("InfirmierId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("PatientId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Pulse")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("RecordedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("RespiratoryRate")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("SpO2")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SystolicBP")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Temperature")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("UrgencyLevel")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Weight")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InfirmierId");
+
+                    b.HasIndex("PatientId");
+
+                    b.HasIndex("RecordedAt");
+
+                    b.HasIndex("Status");
+
+                    b.ToTable("TriageRecords", (string)null);
                 });
 
             modelBuilder.Entity("BrigadeMedicale.Domain.Entities.User", b =>
@@ -552,19 +798,6 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Users", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("00000000-0000-0000-0000-000000000001"),
-                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin@brigade.com",
-                            FirstName = "Admin",
-                            IsActive = true,
-                            LastName = "Système",
-                            PasswordHash = "$2a$11$fXEIORWwGNdft//xGOI4melViISH3./sbEi2I5fVD/LX0HtBdtq8C",
-                            Username = "admin"
-                        });
                 });
 
             modelBuilder.Entity("BrigadeMedicale.Domain.Entities.UserRole", b =>
@@ -580,13 +813,6 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("UserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = new Guid("00000000-0000-0000-0000-000000000001"),
-                            RoleId = 1
-                        });
                 });
 
             modelBuilder.Entity("BrigadeMedicale.Domain.Entities.Consultation", b =>
@@ -603,9 +829,16 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("BrigadeMedicale.Domain.Entities.TriageRecord", "TriageRecord")
+                        .WithOne("Consultation")
+                        .HasForeignKey("BrigadeMedicale.Domain.Entities.Consultation", "TriageRecordId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.Navigation("Doctor");
 
                     b.Navigation("Patient");
+
+                    b.Navigation("TriageRecord");
                 });
 
             modelBuilder.Entity("BrigadeMedicale.Domain.Entities.LabTestRequest", b =>
@@ -678,6 +911,66 @@ namespace BrigadeMedicale.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("BrigadeMedicale.Domain.Entities.TrainingProgress", b =>
+                {
+                    b.HasOne("BrigadeMedicale.Domain.Entities.TrainingModule", "TrainingModule")
+                        .WithMany("UserProgress")
+                        .HasForeignKey("TrainingModuleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BrigadeMedicale.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TrainingModule");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BrigadeMedicale.Domain.Entities.TrainingQuiz", b =>
+                {
+                    b.HasOne("BrigadeMedicale.Domain.Entities.TrainingModule", "TrainingModule")
+                        .WithMany("Quiz")
+                        .HasForeignKey("TrainingModuleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TrainingModule");
+                });
+
+            modelBuilder.Entity("BrigadeMedicale.Domain.Entities.TrainingStep", b =>
+                {
+                    b.HasOne("BrigadeMedicale.Domain.Entities.TrainingModule", "TrainingModule")
+                        .WithMany("Steps")
+                        .HasForeignKey("TrainingModuleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TrainingModule");
+                });
+
+            modelBuilder.Entity("BrigadeMedicale.Domain.Entities.TriageRecord", b =>
+                {
+                    b.HasOne("BrigadeMedicale.Domain.Entities.User", "Infirmier")
+                        .WithMany()
+                        .HasForeignKey("InfirmierId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("BrigadeMedicale.Domain.Entities.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Infirmier");
+
+                    b.Navigation("Patient");
+                });
+
             modelBuilder.Entity("BrigadeMedicale.Domain.Entities.UserRole", b =>
                 {
                     b.HasOne("BrigadeMedicale.Domain.Entities.Role", "Role")
@@ -712,6 +1005,20 @@ namespace BrigadeMedicale.Infrastructure.Migrations
             modelBuilder.Entity("BrigadeMedicale.Domain.Entities.Role", b =>
                 {
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("BrigadeMedicale.Domain.Entities.TrainingModule", b =>
+                {
+                    b.Navigation("Quiz");
+
+                    b.Navigation("Steps");
+
+                    b.Navigation("UserProgress");
+                });
+
+            modelBuilder.Entity("BrigadeMedicale.Domain.Entities.TriageRecord", b =>
+                {
+                    b.Navigation("Consultation");
                 });
 
             modelBuilder.Entity("BrigadeMedicale.Domain.Entities.User", b =>
