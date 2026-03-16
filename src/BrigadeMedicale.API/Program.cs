@@ -136,19 +136,23 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
-// Create database schema automatically
+// Create database schema automatically (no migrations)
 try
 {
     using (var scope = app.Services.CreateScope())
     {
         var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        await context.Database.EnsureCreatedAsync();
+        // Force table creation with correct PostgreSQL schema
+        await context.Database.EnsureDeletedAsync();  // Drop if exists
+        await context.Database.EnsureCreatedAsync();  // Create fresh
+        Console.WriteLine("✓ Database schema created successfully");
     }
 }
 catch (Exception ex)
 {
-    Console.WriteLine($"Database initialization failed (non-blocking): {ex.Message}");
-    // Don't crash if DB init fails - app can still run
+    Console.WriteLine($"✗ Database initialization error: {ex.Message}");
+    Console.WriteLine(ex.StackTrace);
+    throw;  // Let startup fail if DB creation fails
 }
 
 app.Run();
