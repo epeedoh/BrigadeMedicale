@@ -137,19 +137,31 @@ app.UseAuthorization();
 app.MapControllers();
 
 // Create database schema automatically (with fallback to raw SQL)
+Console.WriteLine("═══════════════════════════════════════════════");
+Console.WriteLine("🚀 BRIGADE MÉDICALE API STARTING");
+Console.WriteLine("═══════════════════════════════════════════════");
 try
 {
+    Console.WriteLine("1️⃣  Creating database scope...");
     using (var scope = app.Services.CreateScope())
     {
+        Console.WriteLine("2️⃣  Getting ApplicationDbContext...");
         var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        Console.WriteLine("3️⃣  Calling DatabaseInitializer.InitializeAsync()...");
         await DatabaseInitializer.InitializeAsync(context);
+        Console.WriteLine("4️⃣  Database initialization complete!");
     }
+    Console.WriteLine("✅ DATABASE INITIALIZATION SUCCESS");
 }
 catch (Exception ex)
 {
-    Console.WriteLine($"✗ Database initialization error: {ex.Message}");
-    Console.WriteLine(ex.StackTrace);
+    Console.WriteLine($"❌ CRITICAL: Database initialization FAILED");
+    Console.WriteLine($"✗ Error: {ex.Message}");
+    Console.WriteLine($"✗ StackTrace: {ex.StackTrace}");
     throw;  // Let startup fail if DB creation fails
 }
+Console.WriteLine("═══════════════════════════════════════════════");
+Console.WriteLine("🎉 API READY TO RECEIVE REQUESTS");
+Console.WriteLine("═══════════════════════════════════════════════");
 
 app.Run();
