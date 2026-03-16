@@ -95,8 +95,11 @@ CREATE TABLE IF NOT EXISTS ""RefreshTokens"" (
     ""UserId"" UUID NOT NULL,
     ""Token"" TEXT NOT NULL,
     ""ExpiresAt"" TIMESTAMP NOT NULL,
-    ""CreatedAt"" TIMESTAMP NOT NULL,
+    ""IsRevoked"" BOOLEAN DEFAULT FALSE,
     ""RevokedAt"" TIMESTAMP,
+    ""RevokedReason"" TEXT,
+    ""CreatedAt"" TIMESTAMP NOT NULL,
+    ""UpdatedAt"" TIMESTAMP,
     FOREIGN KEY (""UserId"") REFERENCES ""Users""(""Id"") ON DELETE CASCADE
 );
 

@@ -119,14 +119,14 @@ public class SetupController : ControllerBase
     }
 
     /// <summary>
-    /// Fix missing columns in Users table
+    /// Fix missing columns in Users and RefreshTokens tables
     /// </summary>
     [HttpPost("fix-columns")]
     public async Task<IActionResult> FixMissingColumns()
     {
         try
         {
-            Console.WriteLine("🔧 Fixing missing columns in Users table...");
+            Console.WriteLine("🔧 Fixing missing columns in tables...");
 
             var connection = _context.Database.GetDbConnection();
             if (connection.State != System.Data.ConnectionState.Open)
@@ -135,6 +135,7 @@ public class SetupController : ControllerBase
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = @"
+                    -- Fix Users table
                     ALTER TABLE ""Users""
                     ADD COLUMN IF NOT EXISTS ""FirstName"" VARCHAR(100);
 
@@ -149,6 +150,16 @@ public class SetupController : ControllerBase
 
                     ALTER TABLE ""Users""
                     ADD COLUMN IF NOT EXISTS ""LastLoginAt"" TIMESTAMP;
+
+                    -- Fix RefreshTokens table
+                    ALTER TABLE ""RefreshTokens""
+                    ADD COLUMN IF NOT EXISTS ""IsRevoked"" BOOLEAN DEFAULT FALSE;
+
+                    ALTER TABLE ""RefreshTokens""
+                    ADD COLUMN IF NOT EXISTS ""RevokedReason"" TEXT;
+
+                    ALTER TABLE ""RefreshTokens""
+                    ADD COLUMN IF NOT EXISTS ""UpdatedAt"" TIMESTAMP;
                 ";
                 await command.ExecuteNonQueryAsync();
             }
@@ -158,7 +169,7 @@ public class SetupController : ControllerBase
             return Ok(new
             {
                 success = true,
-                message = "All missing columns added to Users table"
+                message = "All missing columns added to Users and RefreshTokens tables"
             });
         }
         catch (Exception ex)
