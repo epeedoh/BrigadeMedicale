@@ -119,14 +119,14 @@ public class SetupController : ControllerBase
     }
 
     /// <summary>
-    /// Fix missing LastLoginAt column
+    /// Fix missing columns in Users table
     /// </summary>
-    [HttpPost("fix-column")]
-    public async Task<IActionResult> FixMissingColumn()
+    [HttpPost("fix-columns")]
+    public async Task<IActionResult> FixMissingColumns()
     {
         try
         {
-            Console.WriteLine("🔧 Fixing missing LastLoginAt column...");
+            Console.WriteLine("🔧 Fixing missing columns in Users table...");
 
             var connection = _context.Database.GetDbConnection();
             if (connection.State != System.Data.ConnectionState.Open)
@@ -136,17 +136,29 @@ public class SetupController : ControllerBase
             {
                 command.CommandText = @"
                     ALTER TABLE ""Users""
+                    ADD COLUMN IF NOT EXISTS ""FirstName"" VARCHAR(100);
+
+                    ALTER TABLE ""Users""
+                    ADD COLUMN IF NOT EXISTS ""LastName"" VARCHAR(100);
+
+                    ALTER TABLE ""Users""
+                    ADD COLUMN IF NOT EXISTS ""PhoneNumber"" VARCHAR(20);
+
+                    ALTER TABLE ""Users""
+                    ADD COLUMN IF NOT EXISTS ""Address"" TEXT;
+
+                    ALTER TABLE ""Users""
                     ADD COLUMN IF NOT EXISTS ""LastLoginAt"" TIMESTAMP;
                 ";
                 await command.ExecuteNonQueryAsync();
             }
 
-            Console.WriteLine("✅ Column fixed successfully");
+            Console.WriteLine("✅ All missing columns added successfully");
 
             return Ok(new
             {
                 success = true,
-                message = "LastLoginAt column added to Users table"
+                message = "All missing columns added to Users table"
             });
         }
         catch (Exception ex)
