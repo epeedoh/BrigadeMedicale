@@ -18,7 +18,10 @@ CREATE TABLE IF NOT EXISTS "Users" (
     "PasswordHash" TEXT NOT NULL,
     "FirstName" VARCHAR(100),
     "LastName" VARCHAR(100),
+    "PhoneNumber" VARCHAR(20),
+    "Address" TEXT,
     "IsActive" BOOLEAN DEFAULT TRUE,
+    "LastLoginAt" TIMESTAMP,
     "CreatedAt" TIMESTAMP NOT NULL,
     "UpdatedAt" TIMESTAMP
 );
