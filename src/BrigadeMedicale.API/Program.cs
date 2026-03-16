@@ -136,19 +136,19 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
-// Apply migrations automatically
+// Create database schema automatically
 try
 {
     using (var scope = app.Services.CreateScope())
     {
         var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        await context.Database.MigrateAsync();
+        await context.Database.EnsureCreatedAsync();
     }
 }
 catch (Exception ex)
 {
-    Console.WriteLine($"Migration failed (non-blocking): {ex.Message}");
-    // Don't crash if migration fails - app can still run
+    Console.WriteLine($"Database initialization failed (non-blocking): {ex.Message}");
+    // Don't crash if DB init fails - app can still run
 }
 
 app.Run();
