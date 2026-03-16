@@ -119,6 +119,48 @@ public class SetupController : ControllerBase
     }
 
     /// <summary>
+    /// Fix missing LastLoginAt column
+    /// </summary>
+    [HttpPost("fix-column")]
+    public async Task<IActionResult> FixMissingColumn()
+    {
+        try
+        {
+            Console.WriteLine("🔧 Fixing missing LastLoginAt column...");
+
+            var connection = _context.Database.GetDbConnection();
+            if (connection.State != System.Data.ConnectionState.Open)
+                await connection.OpenAsync();
+
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = @"
+                    ALTER TABLE ""Users""
+                    ADD COLUMN IF NOT EXISTS ""LastLoginAt"" TIMESTAMP;
+                ";
+                await command.ExecuteNonQueryAsync();
+            }
+
+            Console.WriteLine("✅ Column fixed successfully");
+
+            return Ok(new
+            {
+                success = true,
+                message = "LastLoginAt column added to Users table"
+            });
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"❌ Fix Error: {ex.Message}");
+            return BadRequest(new
+            {
+                success = false,
+                error = ex.Message
+            });
+        }
+    }
+
+    /// <summary>
     /// Health check endpoint
     /// </summary>
     [HttpGet("health")]
