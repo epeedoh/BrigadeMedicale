@@ -75,6 +75,7 @@ CREATE TABLE IF NOT EXISTS ""Users"" (
     ""FirstName"" VARCHAR(100),
     ""LastName"" VARCHAR(100),
     ""IsActive"" BOOLEAN DEFAULT TRUE,
+    ""LastLoginAt"" TIMESTAMP,
     ""CreatedAt"" TIMESTAMP NOT NULL,
     ""UpdatedAt"" TIMESTAMP
 );
