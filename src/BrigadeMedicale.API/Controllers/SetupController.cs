@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using System.Data;
 using BrigadeMedicale.Infrastructure.Data;
 
 namespace BrigadeMedicale.API.Controllers;
