@@ -136,16 +136,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
-// Create database schema automatically (no migrations)
+// Create database schema automatically (with fallback to raw SQL)
 try
 {
     using (var scope = app.Services.CreateScope())
     {
         var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        // Force table creation with correct PostgreSQL schema
-        await context.Database.EnsureDeletedAsync();  // Drop if exists
-        await context.Database.EnsureCreatedAsync();  // Create fresh
-        Console.WriteLine("✓ Database schema created successfully");
+        await DatabaseInitializer.InitializeAsync(context);
     }
 }
 catch (Exception ex)
