@@ -22,10 +22,6 @@ public class Consultation : BaseEntity
     public DateTime ConsultationDate { get; set; }
     public DateTime? ClosedAt { get; set; }
 
-    // Link to Triage Record (optional)
-    public Guid? TriageRecordId { get; set; }
-    public TriageRecord? TriageRecord { get; set; }
-
     // Navigation properties
     public ICollection<Prescription> Prescriptions { get; set; } = new List<Prescription>();
     public ICollection<LabTestRequest> LabTestRequests { get; set; } = new List<LabTestRequest>();

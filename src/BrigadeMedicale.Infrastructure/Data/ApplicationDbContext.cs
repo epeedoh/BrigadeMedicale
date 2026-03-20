@@ -203,8 +203,8 @@ public class ApplicationDbContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict);
 
             entity.HasOne(e => e.Consultation)
-                .WithOne(c => c.TriageRecord)
-                .HasForeignKey<Consultation>(c => c.TriageRecordId)
+                .WithMany()
+                .HasForeignKey(e => e.ConsultationId)
                 .OnDelete(DeleteBehavior.SetNull);
 
             entity.HasIndex(e => e.PatientId);
