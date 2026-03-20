@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using BrigadeMedicale.Application.Interfaces;
-using System.Security.Claims;
+using BrigadeMedicale.Domain.Enums;
 
 namespace BrigadeMedicale.API.Controllers;
 
@@ -10,18 +10,11 @@ namespace BrigadeMedicale.API.Controllers;
 [Authorize]
 public class DashboardController : ControllerBase
 {
-    private readonly IPatientRepository _patientRepository;
     private readonly IConsultationService _consultationService;
-    private readonly ITriageRepository _triageRepository;
 
-    public DashboardController(
-        IPatientRepository patientRepository,
-        IConsultationService consultationService,
-        ITriageRepository triageRepository)
+    public DashboardController(IConsultationService consultationService)
     {
-        _patientRepository = patientRepository;
         _consultationService = consultationService;
-        _triageRepository = triageRepository;
     }
 
     [HttpGet]
@@ -29,23 +22,17 @@ public class DashboardController : ControllerBase
     {
         try
         {
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier) ?? User.FindFirst("sub");
-            var userId = userIdClaim?.Value;
-
-            // Get counts for dashboard
-            var totalPatients = await _patientRepository.GetCountAsync();
-            var recentConsultations = await _consultationService.GetByStatusAsync(
-                BrigadeMedicale.Domain.Enums.ConsultationStatus.InProgress, 1, 10);
-            var recentTriages = await _triageRepository.GetRecentAsync(10);
+            // Get pending consultations
+            var pendingConsultations = await _consultationService.GetByStatusAsync(
+                ConsultationStatus.InProgress, 1, 10);
 
             return Ok(new
             {
                 success = true,
                 data = new
                 {
-                    totalPatients = totalPatients,
-                    pendingConsultations = recentConsultations?.Count() ?? 0,
-                    recentTriages = recentTriages?.Count() ?? 0,
+                    pendingConsultations = pendingConsultations?.Count() ?? 0,
+                    totalPatients = 0,
                     lastUpdated = DateTime.UtcNow
                 }
             });
