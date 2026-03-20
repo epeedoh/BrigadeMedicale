@@ -119,14 +119,14 @@ public class SetupController : ControllerBase
     }
 
     /// <summary>
-    /// Fix missing columns in Users and RefreshTokens tables
+    /// Comprehensive fix: Add all missing columns to all tables based on entity definitions
     /// </summary>
     [HttpPost("fix-columns")]
     public async Task<IActionResult> FixMissingColumns()
     {
         try
         {
-            Console.WriteLine("🔧 Fixing missing columns in tables...");
+            Console.WriteLine("🔧 Adding all missing columns to match entity definitions...");
 
             var connection = _context.Database.GetDbConnection();
             if (connection.State != System.Data.ConnectionState.Open)
@@ -135,41 +135,79 @@ public class SetupController : ControllerBase
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = @"
-                    -- Fix Users table
-                    ALTER TABLE ""Users""
-                    ADD COLUMN IF NOT EXISTS ""FirstName"" VARCHAR(100);
+                    -- Users table
+                    ALTER TABLE ""Users"" ADD COLUMN IF NOT EXISTS ""Address"" TEXT;
 
-                    ALTER TABLE ""Users""
-                    ADD COLUMN IF NOT EXISTS ""LastName"" VARCHAR(100);
+                    -- Patients table
+                    ALTER TABLE ""Patients"" ADD COLUMN IF NOT EXISTS ""IsFromChurch"" BOOLEAN DEFAULT FALSE;
+                    ALTER TABLE ""Patients"" ADD COLUMN IF NOT EXISTS ""ChurchSector"" VARCHAR(100);
+                    ALTER TABLE ""Patients"" ADD COLUMN IF NOT EXISTS ""RegistrationSource"" VARCHAR(50) DEFAULT 'ACCUEIL';
+                    ALTER TABLE ""Patients"" ADD COLUMN IF NOT EXISTS ""CreatedBy"" UUID;
+                    ALTER TABLE ""Patients"" ADD COLUMN IF NOT EXISTS ""UpdatedBy"" UUID;
 
-                    ALTER TABLE ""Users""
-                    ADD COLUMN IF NOT EXISTS ""PhoneNumber"" VARCHAR(20);
+                    -- PatientTokens table
+                    ALTER TABLE ""PatientTokens"" ADD COLUMN IF NOT EXISTS ""IsRevoked"" BOOLEAN DEFAULT FALSE;
+                    ALTER TABLE ""PatientTokens"" ADD COLUMN IF NOT EXISTS ""LastUsedAt"" TIMESTAMP;
+                    ALTER TABLE ""PatientTokens"" ADD COLUMN IF NOT EXISTS ""UpdatedAt"" TIMESTAMP;
 
-                    ALTER TABLE ""Users""
-                    ADD COLUMN IF NOT EXISTS ""Address"" TEXT;
+                    -- TriageRecords table
+                    ALTER TABLE ""TriageRecords"" ADD COLUMN IF NOT EXISTS ""InfirmierId"" UUID;
+                    ALTER TABLE ""TriageRecords"" ADD COLUMN IF NOT EXISTS ""Pulse"" SMALLINT;
+                    ALTER TABLE ""TriageRecords"" ADD COLUMN IF NOT EXISTS ""SystolicBP"" SMALLINT;
+                    ALTER TABLE ""TriageRecords"" ADD COLUMN IF NOT EXISTS ""DiastolicBP"" SMALLINT;
+                    ALTER TABLE ""TriageRecords"" ADD COLUMN IF NOT EXISTS ""SpO2"" SMALLINT;
+                    ALTER TABLE ""TriageRecords"" ADD COLUMN IF NOT EXISTS ""Complaint"" TEXT;
+                    ALTER TABLE ""TriageRecords"" ADD COLUMN IF NOT EXISTS ""UrgencyLevel"" SMALLINT;
+                    ALTER TABLE ""TriageRecords"" ADD COLUMN IF NOT EXISTS ""Notes"" TEXT;
+                    ALTER TABLE ""TriageRecords"" ADD COLUMN IF NOT EXISTS ""RecordedAt"" TIMESTAMP;
+                    ALTER TABLE ""TriageRecords"" ADD COLUMN IF NOT EXISTS ""ConsultationId"" UUID;
 
-                    ALTER TABLE ""Users""
-                    ADD COLUMN IF NOT EXISTS ""LastLoginAt"" TIMESTAMP;
+                    -- Consultations table
+                    ALTER TABLE ""Consultations"" ADD COLUMN IF NOT EXISTS ""PatientId"" UUID;
+                    ALTER TABLE ""Consultations"" ADD COLUMN IF NOT EXISTS ""ChiefComplaint"" TEXT;
+                    ALTER TABLE ""Consultations"" ADD COLUMN IF NOT EXISTS ""History"" TEXT;
+                    ALTER TABLE ""Consultations"" ADD COLUMN IF NOT EXISTS ""PhysicalExam"" TEXT;
+                    ALTER TABLE ""Consultations"" ADD COLUMN IF NOT EXISTS ""VitalSigns"" TEXT;
+                    ALTER TABLE ""Consultations"" ADD COLUMN IF NOT EXISTS ""Treatment"" TEXT;
+                    ALTER TABLE ""Consultations"" ADD COLUMN IF NOT EXISTS ""Status"" SMALLINT DEFAULT 0;
+                    ALTER TABLE ""Consultations"" ADD COLUMN IF NOT EXISTS ""ConsultationDate"" TIMESTAMP;
+                    ALTER TABLE ""Consultations"" ADD COLUMN IF NOT EXISTS ""ClosedAt"" TIMESTAMP;
 
-                    -- Fix RefreshTokens table
-                    ALTER TABLE ""RefreshTokens""
-                    ADD COLUMN IF NOT EXISTS ""IsRevoked"" BOOLEAN DEFAULT FALSE;
+                    -- Prescriptions table
+                    ALTER TABLE ""Prescriptions"" ADD COLUMN IF NOT EXISTS ""QuantityPrescribed"" SMALLINT;
+                    ALTER TABLE ""Prescriptions"" ADD COLUMN IF NOT EXISTS ""QuantityDispensed"" SMALLINT;
+                    ALTER TABLE ""Prescriptions"" ADD COLUMN IF NOT EXISTS ""Instructions"" TEXT;
+                    ALTER TABLE ""Prescriptions"" ADD COLUMN IF NOT EXISTS ""Status"" SMALLINT DEFAULT 0;
+                    ALTER TABLE ""Prescriptions"" ADD COLUMN IF NOT EXISTS ""DispensedAt"" TIMESTAMP;
+                    ALTER TABLE ""Prescriptions"" ADD COLUMN IF NOT EXISTS ""DispensedBy"" UUID;
 
-                    ALTER TABLE ""RefreshTokens""
-                    ADD COLUMN IF NOT EXISTS ""RevokedReason"" TEXT;
+                    -- StockMovements table
+                    ALTER TABLE ""StockMovements"" ADD COLUMN IF NOT EXISTS ""LotNumber"" VARCHAR(100);
+                    ALTER TABLE ""StockMovements"" ADD COLUMN IF NOT EXISTS ""ExpiryDate"" DATE;
+                    ALTER TABLE ""StockMovements"" ADD COLUMN IF NOT EXISTS ""Reason"" TEXT;
+                    ALTER TABLE ""StockMovements"" ADD COLUMN IF NOT EXISTS ""UserId"" UUID;
+                    ALTER TABLE ""StockMovements"" ADD COLUMN IF NOT EXISTS ""PrescriptionId"" UUID;
+                    ALTER TABLE ""StockMovements"" ADD COLUMN IF NOT EXISTS ""UpdatedAt"" TIMESTAMP;
 
-                    ALTER TABLE ""RefreshTokens""
-                    ADD COLUMN IF NOT EXISTS ""UpdatedAt"" TIMESTAMP;
+                    -- LabTestRequests table
+                    ALTER TABLE ""LabTestRequests"" ADD COLUMN IF NOT EXISTS ""Instructions"" TEXT;
+                    ALTER TABLE ""LabTestRequests"" ADD COLUMN IF NOT EXISTS ""Results"" TEXT;
+                    ALTER TABLE ""LabTestRequests"" ADD COLUMN IF NOT EXISTS ""CompletedBy"" UUID;
+
+                    -- RefreshTokens table
+                    ALTER TABLE ""RefreshTokens"" ADD COLUMN IF NOT EXISTS ""IsRevoked"" BOOLEAN DEFAULT FALSE;
+                    ALTER TABLE ""RefreshTokens"" ADD COLUMN IF NOT EXISTS ""RevokedReason"" TEXT;
+                    ALTER TABLE ""RefreshTokens"" ADD COLUMN IF NOT EXISTS ""UpdatedAt"" TIMESTAMP;
                 ";
                 await command.ExecuteNonQueryAsync();
             }
 
-            Console.WriteLine("✅ All missing columns added successfully");
+            Console.WriteLine("✅ All missing columns added successfully!");
 
             return Ok(new
             {
                 success = true,
-                message = "All missing columns added to Users and RefreshTokens tables"
+                message = "All missing columns added to all tables. Application should now work without column errors."
             });
         }
         catch (Exception ex)
@@ -178,7 +216,8 @@ public class SetupController : ControllerBase
             return BadRequest(new
             {
                 success = false,
-                error = ex.Message
+                error = ex.Message,
+                hint = "Some columns may have already existed or there may be constraint issues. Check the database manually."
             });
         }
     }
