@@ -1,0 +1,7 @@
+{
+  "production": true,
+  "apiUrl": "https://brigade-medicale-api.onrender.com/api",
+  "tokenKey": "brigade_access_token",
+  "refreshTokenKey": "brigade_refresh_token",
+  "environment": "production"
+}

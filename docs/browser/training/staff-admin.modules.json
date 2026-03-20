@@ -1,0 +1,96 @@
+[
+  {
+    "id": "admin-001-management",
+    "role": "ADMIN",
+    "title": "Gestion Administrative du Centre",
+    "description": "Apprenez les principes fondamentaux de la gestion administrative pour optimiser les opérations du centre médical.",
+    "shortDescription": "Gestion administrative et opérationnelle",
+    "durationMinutes": 45,
+    "level": "Intermédiaire",
+    "tags": ["gestion", "administration", "processus"],
+    "imageUrl": null,
+    "createdAt": "2024-01-15T10:00:00Z",
+    "updatedAt": "2024-01-15T10:00:00Z",
+    "steps": [
+      {
+        "id": "admin-001-step-1",
+        "title": "Vue d'ensemble des responsabilités administratives",
+        "content": "La gestion administrative d'un centre médical comprend plusieurs domaines clés:\n\n1. Gestion des ressources humaines\n2. Planification budgétaire\n3. Gestion des fournitures\n4. Coordination des services\n5. Rapports et conformité\n\nChaque domaine contribue au fonctionnement fluide du centre.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "admin-001-step-2",
+        "title": "Gestion des horaires et du personnel",
+        "content": "Les administrateurs doivent:\n\n- Créer des horaires efficaces\n- Assurer une couverture suffisante du personnel\n- Gérer les congés et les demandes spéciales\n- Maintenir l'équilibre travail-vie personnelle du personnel\n- Résoudre les conflits d'horaires\n\nUn bon planning est essentiel pour la satisfaction du personnel et la qualité des services.",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "admin-001-step-3",
+        "title": "Suivi budgétaire et dépenses",
+        "content": "Responsabilités budgétaires:\n\n- Analyser les dépenses mensuelles\n- Faire des prévisions de budget\n- Identifier les économies possibles\n- Justifier les dépenses importantes\n- Maintenir les registres financiers\n\nLe suivi régulier du budget garantit la viabilité financière du centre.",
+        "order": 3,
+        "media": []
+      }
+    ]
+  },
+  {
+    "id": "admin-002-policies",
+    "role": "ADMIN",
+    "title": "Politiques et Procédures du Centre",
+    "description": "Comprendre et appliquer les politiques de la Brigade Médicale pour maintenir la conformité et la qualité des services.",
+    "shortDescription": "Politiques, procédures et conformité",
+    "durationMinutes": 30,
+    "level": "Débutant",
+    "tags": ["politiques", "conformité", "procédures"],
+    "imageUrl": null,
+    "createdAt": "2024-01-20T10:00:00Z",
+    "updatedAt": "2024-01-20T10:00:00Z",
+    "steps": [
+      {
+        "id": "admin-002-step-1",
+        "title": "Les politiques fondamentales",
+        "content": "Les politiques clés de la Brigade Médicale:\n\n1. Code de conduite des employés\n2. Politique de confidentialité des patients\n3. Protocoles de sécurité\n4. Gestion des plaintes\n5. Politique d'égalité et de diversité\n\nChaque employé doit connaître ces politiques.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "admin-002-step-2",
+        "title": "Application et suivi de conformité",
+        "content": "Pour assurer la conformité:\n\n- Organisez des séances de formation régulières\n- Vérifiez que les politiques sont suivies\n- Documentez les cas de non-conformité\n- Effectuez des audits internes\n- Mettez à jour les politiques selon les besoins\n\nLa conformité protège le centre et ses patients.",
+        "order": 2,
+        "media": []
+      }
+    ]
+  },
+  {
+    "id": "admin-003-crisis",
+    "role": "ADMIN",
+    "title": "Gestion de Crise et Situations d'Urgence",
+    "description": "Préparation et réponse aux situations de crise pour assurer la continuité des services.",
+    "shortDescription": "Gestion des crises et urgences",
+    "durationMinutes": 40,
+    "level": "Avancé",
+    "tags": ["crise", "urgence", "planification"],
+    "imageUrl": null,
+    "createdAt": "2024-01-25T10:00:00Z",
+    "updatedAt": "2024-01-25T10:00:00Z",
+    "steps": [
+      {
+        "id": "admin-003-step-1",
+        "title": "Types de crises possibles",
+        "content": "Les crises que le centre peut rencontrer:\n\n1. Défaillance des systèmes informatiques\n2. Manque de personnel crucial\n3. Coupure d'électricité ou d'eau\n4. Afflux soudain de patients\n5. Incidents de sécurité\n6. Crises sanitaires\n\nChaque type nécessite une approche différente.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "admin-003-step-2",
+        "title": "Plans de continuité",
+        "content": "Éléments d'un bon plan de continuité:\n\n- Identification des services critiques\n- Processus d'escalade des alertes\n- Protocoles d'activation\n- Communication avec les parties prenantes\n- Responsabilités claires\n- Tests réguliers du plan\n\nUn plan bien préparé minimise les perturbations.",
+        "order": 2,
+        "media": []
+      }
+    ]
+  }
+]

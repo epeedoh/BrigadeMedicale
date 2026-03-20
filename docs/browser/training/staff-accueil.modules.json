@@ -1,0 +1,103 @@
+[
+  {
+    "id": "accueil-001-communication",
+    "role": "ACCUEIL",
+    "title": "Communication Efficace avec les Patients",
+    "description": "Maîtrisez les techniques de communication pour un accueil chaleureux et professionnel des patients.",
+    "shortDescription": "Accueil et communication patient",
+    "durationMinutes": 35,
+    "level": "Débutant",
+    "tags": ["communication", "accueil", "patient"],
+    "imageUrl": null,
+    "createdAt": "2024-01-15T10:00:00Z",
+    "updatedAt": "2024-01-15T10:00:00Z",
+    "steps": [
+      {
+        "id": "accueil-001-step-1",
+        "title": "Principes d'un bon accueil",
+        "content": "Un accueil efficace commence par:\n\n1. Une écoute active\n2. Une attitude positive\n3. La clarté des informations\n4. La patience et l'empathie\n5. La professionnalisme\n\nL'accueil est la première impression du patient - elle est importante!",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "accueil-001-step-2",
+        "title": "Gestion des patients difficiles",
+        "content": "Techniques pour gérer les situations difficiles:\n\n- Restez calme et patient\n- Écoutez vraiment leurs préoccupations\n- Validez leurs sentiments\n- Proposez des solutions\n- Impliquez un superviseur si nécessaire\n\nLa patience est clé - un patient difficile peut devenir un patient satisfait.",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "accueil-001-step-3",
+        "title": "Langage corporel professionnel",
+        "content": "Éléments non-verbaux importants:\n\n- Contact visuel approprié\n- Posture ouverte\n- Sourire sincère\n- Ton de voix amical\n- Distance personnelle respectée\n- Gestes calmes et assurés\n\nLe non-verbal communique souvent plus que les mots.",
+        "order": 3,
+        "media": []
+      }
+    ]
+  },
+  {
+    "id": "accueil-002-systems",
+    "role": "ACCUEIL",
+    "title": "Maîtrise du Système de Gestion des Patients",
+    "description": "Apprenez à utiliser efficacement le système pour enregistrer et gérer les rendez-vous des patients.",
+    "shortDescription": "Systèmes informatiques d'accueil",
+    "durationMinutes": 40,
+    "level": "Intermédiaire",
+    "tags": ["systèmes", "informatique", "rendez-vous"],
+    "imageUrl": null,
+    "createdAt": "2024-01-20T10:00:00Z",
+    "updatedAt": "2024-01-20T10:00:00Z",
+    "steps": [
+      {
+        "id": "accueil-002-step-1",
+        "title": "Navigation dans le système",
+        "content": "Navigation de base:\n\n1. Connexion et profil\n2. Accès au module patients\n3. Recherche de patients existants\n4. Création de nouveaux dossiers\n5. Navigation entre les écrans\n\nFamiliarisez-vous avec l'interface.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "accueil-002-step-2",
+        "title": "Enregistrement des patients",
+        "content": "Processus d'enregistrement:\n\n- Vérifier si le patient existe déjà\n- Collecter les informations correctes\n- Vérifier les données saisies\n- Assigner un numéro de dossier\n- Confirmer avec le patient\n\nL'exactitude des données est critique.",
+        "order": 2,
+        "media": []
+      },
+      {
+        "id": "accueil-002-step-3",
+        "title": "Gestion des rendez-vous",
+        "content": "Gestion efficace des rendez-vous:\n\n- Consulter le calendrier disponible\n- Proposer des créneaux appropriés\n- Confirmer les détails avec le patient\n- Enregistrer les informations\n- Fournir la confirmation écrite\n\nMaintenir un calendrier exact évite les confusions.",
+        "order": 3,
+        "media": []
+      }
+    ]
+  },
+  {
+    "id": "accueil-003-privacy",
+    "role": "ACCUEIL",
+    "title": "Confidentialité et Sécurité des Données Patients",
+    "description": "Protégez les informations sensibles des patients dans le respect de la vie privée.",
+    "shortDescription": "Confidentialité et protection des données",
+    "durationMinutes": 25,
+    "level": "Débutant",
+    "tags": ["confidentialité", "sécurité", "données"],
+    "imageUrl": null,
+    "createdAt": "2024-01-25T10:00:00Z",
+    "updatedAt": "2024-01-25T10:00:00Z",
+    "steps": [
+      {
+        "id": "accueil-003-step-1",
+        "title": "Importance de la confidentialité",
+        "content": "Pourquoi la confidentialité est essentielle:\n\n1. Respect de la vie privée des patients\n2. Exigences légales\n3. Confiance des patients\n4. Réputation du centre\n5. Protection contre la fraude\n\nLa confidentialité est un droit fondamental.",
+        "order": 1,
+        "media": []
+      },
+      {
+        "id": "accueil-003-step-2",
+        "title": "Bonnes pratiques de sécurité",
+        "content": "Pratiques à respecter:\n\n- Ne jamais partager les mots de passe\n- Verrouiller votre poste quand absent\n- Ne pas divulguer d'informations patients\n- Utiliser des connexions sécurisées\n- Signaler les accès suspectes\n- Chiffrer les documents sensibles\n\nLa sécurité est une responsabilité collective.",
+        "order": 2,
+        "media": []
+      }
+    ]
+  }
+]
