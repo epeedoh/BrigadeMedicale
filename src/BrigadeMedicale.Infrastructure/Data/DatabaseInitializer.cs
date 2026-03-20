@@ -147,6 +147,29 @@ CREATE TABLE IF NOT EXISTS ""PatientTokens"" (
     FOREIGN KEY (""PatientId"") REFERENCES ""Patients""(""Id"") ON DELETE CASCADE
 );
 
+-- Create Consultations table (must come BEFORE TriageRecords since TriageRecords references it)
+CREATE TABLE IF NOT EXISTS ""Consultations"" (
+    ""Id"" UUID PRIMARY KEY,
+    ""PatientId"" UUID NOT NULL,
+    ""TriageRecordId"" UUID,
+    ""DoctorId"" UUID,
+    ""ChiefComplaint"" TEXT,
+    ""History"" TEXT,
+    ""PhysicalExam"" TEXT,
+    ""VitalSigns"" TEXT,
+    ""Diagnosis"" TEXT,
+    ""Treatment"" TEXT,
+    ""Notes"" TEXT,
+    ""Status"" SMALLINT DEFAULT 0,
+    ""ConsultationDate"" TIMESTAMP,
+    ""ClosedAt"" TIMESTAMP,
+    ""CreatedAt"" TIMESTAMP NOT NULL,
+    ""UpdatedAt"" TIMESTAMP,
+    FOREIGN KEY (""PatientId"") REFERENCES ""Patients""(""Id"") ON DELETE CASCADE,
+    FOREIGN KEY (""TriageRecordId"") REFERENCES ""TriageRecords""(""Id"") ON DELETE SET NULL,
+    FOREIGN KEY (""DoctorId"") REFERENCES ""Users""(""Id"") ON DELETE SET NULL
+);
+
 -- Create TriageRecords table
 CREATE TABLE IF NOT EXISTS ""TriageRecords"" (
     ""Id"" UUID PRIMARY KEY,
@@ -174,29 +197,6 @@ CREATE TABLE IF NOT EXISTS ""TriageRecords"" (
     FOREIGN KEY (""PatientId"") REFERENCES ""Patients""(""Id"") ON DELETE CASCADE,
     FOREIGN KEY (""InfirmierId"") REFERENCES ""Users""(""Id"") ON DELETE SET NULL,
     FOREIGN KEY (""ConsultationId"") REFERENCES ""Consultations""(""Id"") ON DELETE SET NULL
-);
-
--- Create Consultations table
-CREATE TABLE IF NOT EXISTS ""Consultations"" (
-    ""Id"" UUID PRIMARY KEY,
-    ""PatientId"" UUID NOT NULL,
-    ""TriageRecordId"" UUID,
-    ""DoctorId"" UUID,
-    ""ChiefComplaint"" TEXT,
-    ""History"" TEXT,
-    ""PhysicalExam"" TEXT,
-    ""VitalSigns"" TEXT,
-    ""Diagnosis"" TEXT,
-    ""Treatment"" TEXT,
-    ""Notes"" TEXT,
-    ""Status"" SMALLINT DEFAULT 0,
-    ""ConsultationDate"" TIMESTAMP,
-    ""ClosedAt"" TIMESTAMP,
-    ""CreatedAt"" TIMESTAMP NOT NULL,
-    ""UpdatedAt"" TIMESTAMP,
-    FOREIGN KEY (""PatientId"") REFERENCES ""Patients""(""Id"") ON DELETE CASCADE,
-    FOREIGN KEY (""TriageRecordId"") REFERENCES ""TriageRecords""(""Id"") ON DELETE SET NULL,
-    FOREIGN KEY (""DoctorId"") REFERENCES ""Users""(""Id"") ON DELETE SET NULL
 );
 
 -- Create Medications table
