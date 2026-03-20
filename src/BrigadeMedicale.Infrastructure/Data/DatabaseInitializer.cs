@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS ""PatientTokens"" (
     FOREIGN KEY (""PatientId"") REFERENCES ""Patients""(""Id"") ON DELETE CASCADE
 );
 
--- Create Consultations table (must come BEFORE TriageRecords since TriageRecords references it)
+-- Create Consultations table (WITHOUT TriageRecordId FK to avoid circular dependency with TriageRecords)
 CREATE TABLE IF NOT EXISTS ""Consultations"" (
     ""Id"" UUID PRIMARY KEY,
     ""PatientId"" UUID NOT NULL,
@@ -166,7 +166,6 @@ CREATE TABLE IF NOT EXISTS ""Consultations"" (
     ""CreatedAt"" TIMESTAMP NOT NULL,
     ""UpdatedAt"" TIMESTAMP,
     FOREIGN KEY (""PatientId"") REFERENCES ""Patients""(""Id"") ON DELETE CASCADE,
-    FOREIGN KEY (""TriageRecordId"") REFERENCES ""TriageRecords""(""Id"") ON DELETE SET NULL,
     FOREIGN KEY (""DoctorId"") REFERENCES ""Users""(""Id"") ON DELETE SET NULL
 );
 
@@ -319,7 +318,12 @@ CREATE TABLE IF NOT EXISTS ""TrainingProgress"" (
     UNIQUE (""UserId"", ""ModuleId""),
     FOREIGN KEY (""UserId"") REFERENCES ""Users""(""Id"") ON DELETE CASCADE,
     FOREIGN KEY (""ModuleId"") REFERENCES ""TrainingModules""(""Id"") ON DELETE CASCADE
-);";
+);
+
+-- Add circular FK constraint from Consultations to TriageRecords (deferred to avoid circular dependency)
+ALTER TABLE ""Consultations""
+ADD CONSTRAINT ""fk_consultations_triagerecords""
+FOREIGN KEY (""TriageRecordId"") REFERENCES ""TriageRecords""(""Id"") ON DELETE SET NULL;";
     }
 
     private static string GetSeedDataSql()
