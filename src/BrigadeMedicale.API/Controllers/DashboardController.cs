@@ -23,7 +23,7 @@ public class DashboardController : ControllerBase
         try
         {
             // Get pending consultations
-            var pendingConsultations = await _consultationService.GetByStatusAsync(
+            var result = await _consultationService.GetByStatusAsync(
                 ConsultationStatus.InProgress, 1, 10);
 
             return Ok(new
@@ -31,7 +31,7 @@ public class DashboardController : ControllerBase
                 success = true,
                 data = new
                 {
-                    pendingConsultations = pendingConsultations?.Count() ?? 0,
+                    pendingConsultations = result.Items?.Count() ?? 0,
                     totalPatients = 0,
                     lastUpdated = DateTime.UtcNow
                 }
