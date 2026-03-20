@@ -321,15 +321,13 @@ CREATE TABLE IF NOT EXISTS ""TrainingProgress"" (
 );
 
 -- Add circular FK constraint from Consultations to TriageRecords (deferred to avoid circular dependency)
--- Use DO block to handle case where constraint already exists
-DO $$
-BEGIN
-  ALTER TABLE ""Consultations""
-  ADD CONSTRAINT ""fk_consultations_triagerecords""
-  FOREIGN KEY (""TriageRecordId"") REFERENCES ""TriageRecords""(""Id"") ON DELETE SET NULL;
-EXCEPTION WHEN duplicate_object THEN
-  NULL;
-END $$;";
+-- Drop constraint if it exists from previous attempt, then add it
+ALTER TABLE ""Consultations""
+DROP CONSTRAINT IF EXISTS ""fk_consultations_triagerecords"";
+
+ALTER TABLE ""Consultations""
+ADD CONSTRAINT ""fk_consultations_triagerecords""
+FOREIGN KEY (""TriageRecordId"") REFERENCES ""TriageRecords""(""Id"") ON DELETE SET NULL;";
     }
 
     private static string GetSeedDataSql()
