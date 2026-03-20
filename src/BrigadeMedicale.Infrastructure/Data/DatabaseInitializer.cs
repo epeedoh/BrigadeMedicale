@@ -123,6 +123,11 @@ CREATE TABLE IF NOT EXISTS ""Patients"" (
     ""Allergies"" TEXT,
     ""ChronicDiseases"" TEXT,
     ""Sector"" VARCHAR(50),
+    ""IsFromChurch"" BOOLEAN DEFAULT FALSE,
+    ""ChurchSector"" VARCHAR(100),
+    ""RegistrationSource"" VARCHAR(50) DEFAULT 'ACCUEIL',
+    ""CreatedBy"" UUID,
+    ""UpdatedBy"" UUID,
     ""IsActive"" BOOLEAN DEFAULT TRUE,
     ""CreatedAt"" TIMESTAMP NOT NULL,
     ""UpdatedAt"" TIMESTAMP
@@ -134,8 +139,11 @@ CREATE TABLE IF NOT EXISTS ""PatientTokens"" (
     ""PatientId"" UUID NOT NULL,
     ""Token"" TEXT NOT NULL,
     ""ExpiresAt"" TIMESTAMP NOT NULL,
-    ""CreatedAt"" TIMESTAMP NOT NULL,
+    ""IsRevoked"" BOOLEAN DEFAULT FALSE,
     ""RevokedAt"" TIMESTAMP,
+    ""LastUsedAt"" TIMESTAMP,
+    ""CreatedAt"" TIMESTAMP NOT NULL,
+    ""UpdatedAt"" TIMESTAMP,
     FOREIGN KEY (""PatientId"") REFERENCES ""Patients""(""Id"") ON DELETE CASCADE
 );
 
@@ -143,30 +151,52 @@ CREATE TABLE IF NOT EXISTS ""PatientTokens"" (
 CREATE TABLE IF NOT EXISTS ""TriageRecords"" (
     ""Id"" UUID PRIMARY KEY,
     ""PatientId"" UUID NOT NULL,
+    ""InfirmierId"" UUID,
     ""Status"" SMALLINT NOT NULL DEFAULT 0,
+    ""Temperature"" NUMERIC(5,2),
     ""TemperatureCelsius"" NUMERIC(5,2),
+    ""Pulse"" SMALLINT,
+    ""SystolicBP"" SMALLINT,
+    ""DiastolicBP"" SMALLINT,
     ""BloodPressure"" VARCHAR(20),
-    ""HeartRate"" SMALLINT,
+    ""SpO2"" SMALLINT,
     ""RespiratoryRate"" SMALLINT,
     ""Weight"" NUMERIC(6,2),
     ""Height"" NUMERIC(5,2),
+    ""Complaint"" TEXT,
     ""ChiefComplaint"" TEXT,
+    ""UrgencyLevel"" SMALLINT,
+    ""Notes"" TEXT,
+    ""RecordedAt"" TIMESTAMP,
+    ""ConsultationId"" UUID,
     ""CreatedAt"" TIMESTAMP NOT NULL,
     ""UpdatedAt"" TIMESTAMP,
-    FOREIGN KEY (""PatientId"") REFERENCES ""Patients""(""Id"") ON DELETE CASCADE
+    FOREIGN KEY (""PatientId"") REFERENCES ""Patients""(""Id"") ON DELETE CASCADE,
+    FOREIGN KEY (""InfirmierId"") REFERENCES ""Users""(""Id"") ON DELETE SET NULL,
+    FOREIGN KEY (""ConsultationId"") REFERENCES ""Consultations""(""Id"") ON DELETE SET NULL
 );
 
 -- Create Consultations table
 CREATE TABLE IF NOT EXISTS ""Consultations"" (
     ""Id"" UUID PRIMARY KEY,
-    ""TriageRecordId"" UUID NOT NULL,
+    ""PatientId"" UUID NOT NULL,
+    ""TriageRecordId"" UUID,
     ""DoctorId"" UUID,
+    ""ChiefComplaint"" TEXT,
+    ""History"" TEXT,
+    ""PhysicalExam"" TEXT,
+    ""VitalSigns"" TEXT,
     ""Diagnosis"" TEXT,
+    ""Treatment"" TEXT,
     ""Notes"" TEXT,
+    ""Status"" SMALLINT DEFAULT 0,
+    ""ConsultationDate"" TIMESTAMP,
+    ""ClosedAt"" TIMESTAMP,
     ""CreatedAt"" TIMESTAMP NOT NULL,
     ""UpdatedAt"" TIMESTAMP,
-    FOREIGN KEY (""TriageRecordId"") REFERENCES ""TriageRecords""(""Id"") ON DELETE CASCADE,
-    FOREIGN KEY (""DoctorId"") REFERENCES ""Users""(""Id"")
+    FOREIGN KEY (""PatientId"") REFERENCES ""Patients""(""Id"") ON DELETE CASCADE,
+    FOREIGN KEY (""TriageRecordId"") REFERENCES ""TriageRecords""(""Id"") ON DELETE SET NULL,
+    FOREIGN KEY (""DoctorId"") REFERENCES ""Users""(""Id"") ON DELETE SET NULL
 );
 
 -- Create Medications table
@@ -187,14 +217,21 @@ CREATE TABLE IF NOT EXISTS ""Prescriptions"" (
     ""Id"" UUID PRIMARY KEY,
     ""ConsultationId"" UUID NOT NULL,
     ""MedicationId"" UUID NOT NULL,
+    ""QuantityPrescribed"" SMALLINT,
+    ""QuantityDispensed"" SMALLINT,
     ""Dosage"" VARCHAR(100),
+    ""Instructions"" TEXT,
     ""Frequency"" VARCHAR(100),
     ""Duration"" VARCHAR(100),
     ""Notes"" TEXT,
+    ""Status"" SMALLINT DEFAULT 0,
+    ""DispensedAt"" TIMESTAMP,
+    ""DispensedBy"" UUID,
     ""CreatedAt"" TIMESTAMP NOT NULL,
     ""UpdatedAt"" TIMESTAMP,
     FOREIGN KEY (""ConsultationId"") REFERENCES ""Consultations""(""Id"") ON DELETE CASCADE,
-    FOREIGN KEY (""MedicationId"") REFERENCES ""Medications""(""Id"")
+    FOREIGN KEY (""MedicationId"") REFERENCES ""Medications""(""Id"") ON DELETE RESTRICT,
+    FOREIGN KEY (""DispensedBy"") REFERENCES ""Users""(""Id"") ON DELETE SET NULL
 );
 
 -- Create StockMovements table
@@ -203,8 +240,15 @@ CREATE TABLE IF NOT EXISTS ""StockMovements"" (
     ""MedicationId"" UUID NOT NULL,
     ""MovementType"" SMALLINT NOT NULL,
     ""Quantity"" SMALLINT NOT NULL,
+    ""LotNumber"" VARCHAR(100),
+    ""ExpiryDate"" DATE,
+    ""Reason"" TEXT,
+    ""UserId"" UUID,
+    ""PrescriptionId"" UUID,
     ""CreatedAt"" TIMESTAMP NOT NULL,
-    FOREIGN KEY (""MedicationId"") REFERENCES ""Medications""(""Id"") ON DELETE CASCADE
+    ""UpdatedAt"" TIMESTAMP,
+    FOREIGN KEY (""MedicationId"") REFERENCES ""Medications""(""Id"") ON DELETE CASCADE,
+    FOREIGN KEY (""UserId"") REFERENCES ""Users""(""Id"") ON DELETE SET NULL
 );
 
 -- Create LabTestRequests table
@@ -212,13 +256,17 @@ CREATE TABLE IF NOT EXISTS ""LabTestRequests"" (
     ""Id"" UUID PRIMARY KEY,
     ""ConsultationId"" UUID NOT NULL,
     ""TestName"" VARCHAR(200) NOT NULL,
+    ""Instructions"" TEXT,
     ""Result"" TEXT,
+    ""Results"" TEXT,
     ""Status"" SMALLINT NOT NULL DEFAULT 0,
     ""RequestedAt"" TIMESTAMP NOT NULL,
     ""CompletedAt"" TIMESTAMP,
+    ""CompletedBy"" UUID,
     ""CreatedAt"" TIMESTAMP NOT NULL,
     ""UpdatedAt"" TIMESTAMP,
-    FOREIGN KEY (""ConsultationId"") REFERENCES ""Consultations""(""Id"") ON DELETE CASCADE
+    FOREIGN KEY (""ConsultationId"") REFERENCES ""Consultations""(""Id"") ON DELETE CASCADE,
+    FOREIGN KEY (""CompletedBy"") REFERENCES ""Users""(""Id"") ON DELETE SET NULL
 );
 
 -- Create TrainingModules table
